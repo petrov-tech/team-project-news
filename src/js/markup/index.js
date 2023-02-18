@@ -26,7 +26,7 @@ function createCardsToHtml(mass) {
     
     const startMass = page * paginationKoef - paginationKoef    
     const massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
-    console.log(massPageCards.length,startMass);
+    
     getMarkup(massPageCards,startMass)
 }
 function orientationFromBody() {
@@ -41,12 +41,13 @@ function orientationFromBody() {
     } else {orientation ='mobile'
         paginationKoef = 4
     }
-    console.log(orientation);
+    
 }
 
 function getMarkup(massPageCards,idCardsSave) {        
     
     const mass = "<ul class='list-news'>" + massPageCards.map((elem, i) => {
+        
         if (i === 0) {
             if (orientation === 'mobile') {
                 idCards = idCardsSave
@@ -66,13 +67,14 @@ function getMarkup(massPageCards,idCardsSave) {
 
 // idCardsSave назва ід елемента в стореджі
 
-function createCards({ abstract, lead_paragraph, web_url , multimedia, pub_date ,url, title, thumbnail_standard, source },idCardsSave =  idCards) {
+function createCards({ abstract, headline, web_url , multimedia, pub_date ,url, title, thumbnail_standard, source },idCardsSave =  idCards) {
     
     idCards += 1
     const time = getDataFormat(pub_date)
-    const paragraf = getFormatParagraf(lead_paragraph || abstract)
-    const img = getFormatImg(  thumbnail_standard || multimedia[0].legacy.xlarge)
-    const titleCard = getFormatTitle(abstract)
+    const paragraf = getFormatParagraf(abstract)
+    const img = getFormatImg( multimedia[0].legacy.xlarge)
+    const titleCard = headline.main
+
 
     return `
     <li>
@@ -118,9 +120,7 @@ function createCards({ abstract, lead_paragraph, web_url , multimedia, pub_date 
 function getFormatParagraf(p) {
     return p.slice(0,115) + "..."
 }
-function getFormatTitle(p) {
-    return p.slice(0,67) + "..."
-}
+
 function getDataFormat(time) {
     const date = new Date(time)
     const day = date.getUTCDate().toString().padStart(2, '0');
