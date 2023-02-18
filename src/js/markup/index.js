@@ -1,31 +1,23 @@
-import { data } from "./gallery" 
 
 const news = document.getElementsByClassName("news")[0]
 
 const allCardsOnPage = []
-let idCards = 0
 let paginationKoef = 5
 let orientation = ""
+const feeltImg = ""
+let massPageCards = []
 
-createCardsToHtml(data)
 
-
-// потрібний сторінка
-function createCardsToHtml(mass) {
-
-    const page = 1
-
+// перехід між сторінками createCardsToHtml([] ,3)
+function createCardsToHtml(mass = allCardsOnPage, page = 1) {
     orientationFromBody()
-
-    // mass.response.docs.map((elem) => { allCardsOnPage.push(elem)        
-    // }).join("") 
-    
-    mass.map((elem) => { allCardsOnPage.push(elem)        
+    mass.map((elem) => {
+       const mass = transformToFormat(elem)
+        allCardsOnPage.push(mass)        
     }).join("")    
 
-    
     const startMass = page * paginationKoef - paginationKoef    
-    const massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
+    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
     
     getMarkup(massPageCards,startMass)
 }
@@ -44,17 +36,17 @@ function orientationFromBody() {
     
 }
 
-function getMarkup(massPageCards,idCardsSave) {        
+function getMarkup(massPageCards) {        
     
     const mass = "<ul class='list-news'>" + massPageCards.map((elem, i) => {
         
         if (i === 0) {
             if (orientation === 'mobile') {
-                idCards = idCardsSave
+                
                 return addWetter(elem)
             }            
-            idCards = idCardsSave
-            return createCards(elem, idCardsSave)
+            
+            return createCards(elem)
         } 
         else if (i === 1) { if (orientation === 'tablet') { return addWetter(elem) } }
         else if (i === 2) { if (orientation === 'desktop') { return addWetter(elem) } }        
@@ -65,26 +57,71 @@ function getMarkup(massPageCards,idCardsSave) {
     news.insertAdjacentHTML("beforeend", mass) 
 }
 
-// idCardsSave назва ід елемента в стореджі
-
-function createCards({ abstract, headline, web_url , multimedia, pub_date ,url, title, thumbnail_standard, source },idCardsSave =  idCards) {
+function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, title, created_date, url,section_name,section,uri,media,published_date,id, }) {
     
-    idCards += 1
-    const time = getDataFormat(pub_date)
+    let imgUrl = ""
+    let titleFormt = ""
+    let dataFormt = ""
+    let urlFormt = ""
+    let sectionFormt = ""
+    let idCards = ""
+
+    if (multimedia) {                
+        if (headline) {
+            // масив за пошуком слова
+            titleFormt = headline.main;
+            imgUrl = getFormatImg(multimedia[multimedia.length - 1].url);
+            dataFormt = pub_date;
+            urlFormt = web_url;
+            sectionFormt = section_name;
+            idCards = uri
+        }
+        else {
+            // масив за пошуком категорією
+            titleFormt = title;
+            imgUrl = multimedia[multimedia.length - 2].url;
+            dataFormt = created_date;
+            urlFormt = url;
+            sectionFormt = section;
+            idCards = uri
+        }
+    } else {
+        // масив за популярним
+        titleFormt = title;        
+        dataFormt = published_date;
+        urlFormt = url;
+        sectionFormt = section;
+        idCards = id
+
+        // танці з бубном через media-metadata
+        if (media.length === 0) {
+            imgUrl = feeltImg;
+        } else {
+            const value = media[0];        
+            const myObject = value['media-metadata'];        
+            const lastKey = Object.keys(myObject)[Object.keys(myObject).length - 1];        
+            const lastValue = myObject[lastKey].url;        
+            imgUrl = lastValue
+        }        
+    }
+    dataFormt = getDataFormat(dataFormt)
     const paragraf = getFormatParagraf(abstract)
-    const img = getFormatImg( multimedia[0].legacy.xlarge)
-    const titleCard = headline.main
 
+    // тут якщо читали або фаворіт по ід провіряти
 
+  return  ({idCards,sectionFormt,titleFormt,paragraf,dataFormt,urlFormt,imgUrl})
+}
+
+function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataFormt, idCards,toRead = false,toFavorite = false }) {
+    
     return `
     <li>
     <article class="item-news__article" data-id="${idCards}">    
      <div class="item-news__wrapper-img">
         <img class="item-news__img"
-                          src="${img}"
+                          src="${imgUrl}"
                           alt="">
-                      <p class="item-news__category">${source}</p>
-        
+                      <p class="item-news__category">${sectionFormt}</p>        
                       <button type="button" class="item-news__add-to-favorite ">
                       <span class="item-news__add-to-favorite-btn">Add to favorite
                          </span>
@@ -99,17 +136,15 @@ function createCards({ abstract, headline, web_url , multimedia, pub_date ,url, 
                   </div>
                   <div class="item-news__wrapper-text">
                   <h2 class="item-news__title">
-                      ${titleCard}
+                      ${titleFormt}
                   </h2>
                   <p class="item-news__description">
                       ${paragraf}</p>
                   </div>
                   <div class="item-news__info">
-                      <span class="item-news__info-date">
-                          ${time}
-                      </span>
+                      <span class="item-news__info-date">${dataFormt}</span>
                       <a target="_blank" class="item-news__info-link" href="${
-                        web_url
+                        urlFormt
                       }">Read more</a></div>                    
     </article>
     </li>
@@ -138,4 +173,9 @@ function addWetter(elem) {
 function getFormatImg(e) {
     return "https://static01.nyt.com/"+ e
 }
-export {allCardsOnPage,orientation, createCardsToHtml}
+function deleteCardsForNewSearch() {
+
+    news.innerHTML = ""
+    allCardsOnPage.length = 0
+}
+export {allCardsOnPage,orientation, createCardsToHtml, deleteCardsForNewSearch}
