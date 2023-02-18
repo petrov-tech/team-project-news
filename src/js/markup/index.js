@@ -1,4 +1,4 @@
-
+import { data } from "./gallery" 
 
 const news = document.getElementsByClassName("news")[0]
 
@@ -7,7 +7,7 @@ let idCards = 0
 let paginationKoef = 5
 let orientation = ""
 
-
+createCardsToHtml(data)
 
 
 // потрібний сторінка
@@ -32,10 +32,10 @@ function createCardsToHtml(mass) {
 function orientationFromBody() {
     const widthBody = document.body.clientWidth
     
-    if (widthBody > 1200) {
+    if (widthBody > 1280) {
         orientation ='desktop'
         paginationKoef = 8
-    } else if (widthBody > 600) {
+    } else if (widthBody > 760) {
         orientation ='tablet'
         paginationKoef = 7
     } else {orientation ='mobile'
@@ -108,7 +108,7 @@ function createCards({ abstract, lead_paragraph, web_url , multimedia, pub_date 
                       </span>
                       <a target="_blank" class="item-news__info-link" href="${
                         web_url
-                      }">Read more</a>                    
+                      }">Read more</a></div>                    
     </article>
     </li>
     `        
@@ -119,7 +119,7 @@ function getFormatParagraf(p) {
     return p.slice(0,115) + "..."
 }
 function getFormatTitle(p) {
-    return p.slice(0,115) + "..."
+    return p.slice(0,67) + "..."
 }
 function getDataFormat(time) {
     const date = new Date(time)
