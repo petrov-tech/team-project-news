@@ -1,4 +1,5 @@
 
+
 const news = document.getElementsByClassName("news")[0]
 
 const allCardsOnPage = []
@@ -197,8 +198,10 @@ function getDataFormat(time) {
 
 function addWetter(elem) {
     // return massPageCards.push(лі погода) 
-    return    createCards(elem)
-    return   "<li>wetter</li>" + createCards(elem)
+    
+    return   `<li><div class="weather"><div class="weather__info"><span class="weather__deg"></span><div class="weather__geo"><span class="weather__value"></span>
+            <p class="weather__location"><span class="weather__city"></span></p></div></div><img class="weather__img" /><div class="weather__date">
+        <p class="weather__day"></p><p class="weather__year"></p></div><a href="https://sinoptik.ua/" class="weather__link" target="_blank" rel="noreferrer noopener">weather for week</a></div></li>` + createCards(elem)
     
 }
 function getFormatImg(e) {
