@@ -25,7 +25,7 @@ function createCardsToHtml(mass = allCardsOnPage, page = 1) {
     
     getMarkup(massPageCards,startMass)
 }
-
+// перехід між сторінками createCardsLast([] ,99,100), має бути контейнер з класом news
 function createCardsLast(mass , page = 100, maxPage = 100) {    
     orientationFromBody()    
     mass.map((elem) => {
