@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "air-datepicker": "^3.3.5",
+    "date-fns": "^2.29.3",
     "modern-normalize": "^1.1.0"
   },
   "devDependencies": {
