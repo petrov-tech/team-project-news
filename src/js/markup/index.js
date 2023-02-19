@@ -1,25 +1,56 @@
 
+
 const news = document.getElementsByClassName("news")[0]
 
 const allCardsOnPage = []
-let paginationKoef = 5
+let paginationKoef = 4
+let numberPages = 1
 let orientation = ""
 const feeltImg = ""
 let massPageCards = []
 
 
-// перехід між сторінками createCardsToHtml([] ,3)
-function createCardsToHtml(mass = allCardsOnPage, page = 1) {
-    orientationFromBody()
+
+// перехід між сторінками createCardsToHtml([] ,3), має бути контейнер з класом news
+function createCardsToHtml(mass = allCardsOnPage, page = 1) {    
+    orientationFromBody()    
     mass.map((elem) => {
-       const mass = transformToFormat(elem)
+        if (elem.idCards) {return allCardsOnPage.push(elem)}        
+        const mass = transformToFormat(elem)        
         allCardsOnPage.push(mass)        
     }).join("")    
-
-    const startMass = page * paginationKoef - paginationKoef    
+    
+    const startMass = page * paginationKoef - paginationKoef 
+    numberPages = allCardsOnPage.length / paginationKoef    
     massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
     
     getMarkup(massPageCards,startMass)
+}
+// перехід між сторінками createCardsLast([] ,99,100), має бути контейнер з класом news
+function createCardsLast(mass , page = 100, maxPage = 100) {    
+    orientationFromBody()    
+    mass.map((elem) => {
+        if (elem.idCards) {return allCardsOnPage.push(elem)}        
+        const mass = transformToFormat(elem)        
+        allCardsOnPage.push(mass)        
+    }).join("")    
+    
+    
+    const startMass = (maxPage - page + 1) * paginationKoef - paginationKoef  
+    numberPages = maxPage - (allCardsOnPage.length / paginationKoef)  
+    
+
+    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
+    
+    getMarkup(massPageCards,startMass)
+}
+
+// вертає HTML розмітку без пагінації
+function loadCardsHtml(mass) {
+    return "<ul class='list-news'>" + mass.map((elem) => {
+        return createCards(elem)
+     }).join("") + "</ul>"
+
 }
 function orientationFromBody() {
     const widthBody = document.body.clientWidth
@@ -36,28 +67,23 @@ function orientationFromBody() {
     
 }
 
-function getMarkup(massPageCards) {        
-    
-    const mass = "<ul class='list-news'>" + massPageCards.map((elem, i) => {
-        
+function getMarkup(massPageCards) {       
+   const mass = getHtmlMarkup(massPageCards)  
+    news.innerHTML = ""
+    news.insertAdjacentHTML("beforeend", mass) 
+}
+function getHtmlMarkup(massPageCards) {
+    return "<ul class='list-news'>" + massPageCards.map((elem, i) => {        
         if (i === 0) {
-            if (orientation === 'mobile') {
-                
-                return addWetter(elem)
-            }            
-            
+            if (orientation === 'mobile') { return addWetter(elem) }                      
             return createCards(elem)
         } 
         else if (i === 1) { if (orientation === 'tablet') { return addWetter(elem) } }
         else if (i === 2) { if (orientation === 'desktop') { return addWetter(elem) } }        
         return createCards(elem)
     }).join("") + "</ul>"
-  
-    news.innerHTML = ""
-    news.insertAdjacentHTML("beforeend", mass) 
 }
-
-function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, title, created_date, url,section_name,section,uri,media,published_date,id, }) {
+function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, title, created_date, url,section_name,section,uri,media,published_date,id }) {
     
     let imgUrl = ""
     let titleFormt = ""
@@ -85,7 +111,9 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
             sectionFormt = section;
             idCards = uri
         }
-    } else {
+    }
+    else  {        
+
         // масив за популярним
         titleFormt = title;        
         dataFormt = published_date;
@@ -104,6 +132,7 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
             imgUrl = lastValue
         }        
     }
+    
     dataFormt = getDataFormat(dataFormt)
     const paragraf = getFormatParagraf(abstract)
 
@@ -113,16 +142,17 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
 }
 
 function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataFormt, idCards,toRead = false,toFavorite = false }) {
-    
+    if (toRead) {toRead = "cardsRead"} else toRead = ""
+    if (toFavorite) {toFavorite = "cardsFavorite"} else toFavorite = ""    
     return `
     <li>
-    <article class="item-news__article" data-id="${idCards}">    
+    <article class="item-news__article ${toRead}" data-id="${idCards} ">    
      <div class="item-news__wrapper-img">
         <img class="item-news__img"
                           src="${imgUrl}"
                           alt="">
                       <p class="item-news__category">${sectionFormt}</p>        
-                      <button type="button" class="item-news__add-to-favorite ">
+                      <button type="button" class="item-news__add-to-favorite ${toFavorite} ">
                       <span class="item-news__add-to-favorite-btn">Add to favorite
                          </span>
 								<svg class="item-news__block-icon active-news-icon"
@@ -131,8 +161,10 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
 								viewBox="0 0 37 32"
 								>
 								</svg></span>
-                      </button>
-                      
+
+                        <span class="item-news__add-to-favorite-btn-remove">Remove from favorite
+                         
+                      </button>                      
                   </div>
                   <div class="item-news__wrapper-text">
                   <h2 class="item-news__title">
@@ -166,8 +198,10 @@ function getDataFormat(time) {
 
 function addWetter(elem) {
     // return massPageCards.push(лі погода) 
-    return    createCards(elem)
-    return   "<li>wetter</li>" + createCards(elem)
+    
+    return   `<li><div class="weather"><div class="weather__info"><span class="weather__deg"></span><div class="weather__geo"><span class="weather__value"></span>
+            <p class="weather__location"><span class="weather__city"></span></p></div></div><img class="weather__img" /><div class="weather__date">
+        <p class="weather__day"></p><p class="weather__year"></p></div><a href="https://sinoptik.ua/" class="weather__link" target="_blank" rel="noreferrer noopener">weather for week</a></div></li>` + createCards(elem)
     
 }
 function getFormatImg(e) {
@@ -178,4 +212,4 @@ function deleteCardsForNewSearch() {
     news.innerHTML = ""
     allCardsOnPage.length = 0
 }
-export {allCardsOnPage,orientation, createCardsToHtml, deleteCardsForNewSearch}
+export {allCardsOnPage,orientation,massPageCards,numberPages, createCardsToHtml, deleteCardsForNewSearch,loadCardsHtml,createCardsLast}
