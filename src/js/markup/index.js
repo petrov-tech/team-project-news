@@ -160,8 +160,10 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
 								viewBox="0 0 37 32"
 								>
 								</svg></span>
-                      </button>
-                      
+
+                        <span class="item-news__add-to-favorite-btn-remove">Remove from favorite
+                         
+                      </button>                      
                   </div>
                   <div class="item-news__wrapper-text">
                   <h2 class="item-news__title">
