@@ -1,0 +1,2 @@
+document.getElementsByClassName("news")[0];const e=querySelector(".item-news__add-to-favorite"),t=querySelector(".container-card");let a=[];a=!0,a.push[idCards],localStorage.setItem("toFavorite",JSON.stringify(a)),createCardsToHtml(data),e.addEventListener("click",(function(){a=!0,e.textContent="Remove from favorite",e.svg.use.href="./images/symbol-defs.svg#icon-removefavorite",t.insertAdjacentHTML("beforeend",r);var r})),e.addEventListener("click",(function(){a=!1})),elem.classList.add(header__page-curent);
+//# sourceMappingURL=favorite.2c654529.js.map
