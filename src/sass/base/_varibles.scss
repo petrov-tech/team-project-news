@@ -1,0 +1,25 @@
+:root {
+  // Light theme
+  --backgroundColorLight: rgba(244, 244, 244, 1);
+  --headerBorderColorLight: rgba(0, 0, 0, 0.2);
+  --inputBorderColorLight: rgba(17, 19, 33, 1);
+  --titleColorTextLight: rgba(17, 19, 33, 1);
+
+  // Dark theme
+  --backgroundColorDark: rgba(46, 46, 46, 1);
+  --headerBorderColorDark: rgba(244, 244, 244, 0.2);
+  --inputBorderColorDark: rgba(244, 244, 244, 1);
+  --titleColorTextDark: rgba(244, 244, 244, 1);
+
+  // button
+  --buttonActiveColor: rgba(68, 64, 246, 1);
+  --buttonActiveBorderColor: rgba(75, 72, 219, 1);
+  --buttonColorDark: rgba(255, 255, 255, 1);
+  --buttonBorderColor: rgba(68, 64, 246, 1);
+  --buttonTextColor: rgba(68, 64, 246, 1);
+  --buttonActiveTextColor: rgba(255, 255, 255, 1);
+
+  --iconsColor: rgba(75, 72, 218, 1);
+  --footerColor: rgba(122, 122, 122, 1);
+  --dateColorText: rgba(168, 168, 168, 1);
+}
