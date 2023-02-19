@@ -1,5 +1,6 @@
-
-
+import { data } from "./gallery3"
+import { generatePaginationButtons } from "../pagination"
+    
 const news = document.getElementsByClassName("news")[0]
 
 const allCardsOnPage = []
@@ -8,18 +9,24 @@ let numberPages = 1
 let orientation = ""
 const feeltImg = ""
 let massPageCards = []
+let currectPage = 2
+let lastCuttectPage = 0
 
 
+createCardsToHtml(data,1)
 
 // перехід між сторінками createCardsToHtml([] ,3), має бути контейнер з класом news
 function createCardsToHtml(mass = allCardsOnPage, page = 1) {    
+
+    
     orientationFromBody()    
     mass.map((elem) => {
         if (elem.idCards) {return allCardsOnPage.push(elem)}        
         const mass = transformToFormat(elem)        
         allCardsOnPage.push(mass)        
-    }).join("")    
+    }).join("") 
     
+    currectPage = page
     const startMass = page * paginationKoef - paginationKoef 
     numberPages = allCardsOnPage.length / paginationKoef    
     massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
@@ -38,8 +45,6 @@ function createCardsLast(mass , page = 100, maxPage = 100) {
     
     const startMass = (maxPage - page + 1) * paginationKoef - paginationKoef  
     numberPages = maxPage - (allCardsOnPage.length / paginationKoef)  
-    
-
     massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
     
     getMarkup(massPageCards,startMass)
@@ -70,7 +75,9 @@ function orientationFromBody() {
 function getMarkup(massPageCards) {       
    const mass = getHtmlMarkup(massPageCards)  
     news.innerHTML = ""
-    news.insertAdjacentHTML("beforeend", mass) 
+    news.insertAdjacentHTML("beforeend", mass)
+    if (currectPage !== lastCuttectPage) {generatePaginationButtons(currectPage, numberPages )}
+    
 }
 function getHtmlMarkup(massPageCards) {
     return "<ul class='list-news'>" + massPageCards.map((elem, i) => {        
@@ -132,7 +139,7 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
             imgUrl = lastValue
         }        
     }
-    
+    if (imgUrl === "") imgUrl="./error.png"
     dataFormt = getDataFormat(dataFormt)
     const paragraf = getFormatParagraf(abstract)
 
@@ -153,17 +160,14 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
                           alt="">
                       <p class="item-news__category">${sectionFormt}</p>        
                       <button type="button" class="item-news__add-to-favorite ${toFavorite} ">
-                      <span class="item-news__add-to-favorite-btn">Add to favorite
-                         </span>
+                      <span class="item-news__add-to-favorite-btn">Add to favorite</span>
+                      <span class="item-news__add-to-favorite-btn-remove">Remove from favorite</span>
 								<svg class="item-news__block-icon active-news-icon"
 								width="16"
 								height="16"
-								viewBox="0 0 37 32"
-								>
+								viewBox="0 0 16 16"
+								><use href="/symbol-defs.a8b2e413.svg#icon-addfavorite"></use>
 								</svg></span>
-
-                        <span class="item-news__add-to-favorite-btn-remove">Remove from favorite
-                         
                       </button>                      
                   </div>
                   <div class="item-news__wrapper-text">
