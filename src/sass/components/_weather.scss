@@ -1,3 +1,53 @@
+// normalize
+
+h1,
+h2,
+h3,
+h4,
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+address {
+    font-style: inherit;
+}
+
+button {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    cursor: pointer;
+    background-color: inherit;
+    box-shadow: none;
+}
+
+svg {
+    fill: currentColor;
+}
 .weather {
     background-color: #4440f6;
     padding: 32px 36px;
@@ -5,7 +55,6 @@
     border: 0px solid;
     border-radius: 4px;
     height: 100%;
-
     &-hidden {
         display: none;
     }
@@ -109,6 +158,7 @@
 
    
     &__img {
+        display: flex;
         margin-bottom: 20px;
         width: 168px;
         margin-left: auto;
@@ -138,6 +188,7 @@
     }
 
     &__link {
+        
         display: block;
         padding: 8px 14px;
         width: 151px;
