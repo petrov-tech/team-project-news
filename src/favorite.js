@@ -8,7 +8,7 @@ if (toFavorite = true) {
 };
 
 localStorage.setItem("toFavorite", JSON.stringify(toFavorite));
-
+createCardsToHtml(data);
 addToFavouriteBtn.addEventListener('click', addTofavorite);
 
 function addTofavorite() {
