@@ -1,7 +1,7 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
 <symbol id="icon-addfavorite" viewBox="0 0 32 32">
-<path fill="none" stroke="#4440f7" style="stroke: var(--color1, #4440f7)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M9.333 4c-3.681 0-6.667 2.955-6.667 6.6 0 2.943 1.167 9.927 12.651 16.987 0.206 0.125 0.442 0.191 0.683 0.191s0.477-0.066 0.683-0.191c11.484-7.060 12.651-14.044 12.651-16.987 0-3.645-2.985-6.6-6.667-6.6s-6.667 4-6.667 4-2.985-4-6.667-4z"></path>
+<path  stroke="#4440f7" style="stroke: var(--color1, #4440f7)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M9.333 4c-3.681 0-6.667 2.955-6.667 6.6 0 2.943 1.167 9.927 12.651 16.987 0.206 0.125 0.442 0.191 0.683 0.191s0.477-0.066 0.683-0.191c11.484-7.060 12.651-14.044 12.651-16.987 0-3.645-2.985-6.6-6.667-6.6s-6.667 4-6.667 4-2.985-4-6.667-4z"></path>
 </symbol>
 <symbol id="icon-darkthema" viewBox="0 0 32 32">
 <path fill="none" stroke="#5f6775" style="stroke: var(--color2, #5f6775)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.2857" d="M28 17.053c-0.21 2.27-1.061 4.433-2.456 6.236s-3.273 3.172-5.417 3.946c-2.144 0.774-4.464 0.922-6.688 0.426s-4.262-1.615-5.874-3.227c-1.612-1.612-2.731-3.649-3.227-5.874s-0.348-4.544 0.426-6.688 2.143-4.023 3.946-5.417c1.803-1.394 3.966-2.246 6.236-2.456-1.329 1.798-1.968 4.013-1.802 6.242s1.127 4.325 2.708 5.906c1.581 1.581 3.676 2.542 5.906 2.708s4.444-0.473 6.242-1.802v0z"></path>
