@@ -1,0 +1,55 @@
+.input-form {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.calendar-form {
+  display: flex;
+  align-items: center;
+}
+
+.calendar-title {
+  margin-right: 37px;
+}
+
+.calendar-title--text {
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.38;
+}
+.input-picker {
+  width: 168px;
+  height: 31px;
+  gap: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  position: relative;
+}
+.calendar_input {
+  width: 168px;
+  height: 31px;
+  gap: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none;
+  border: 1px solid #111321;
+  border-radius: 20px;
+  padding: 0;
+  text-align: center;
+  color: #a8a8a8;
+}
+.calendar__button-arrow {
+  position: absolute;
+  right: 10px;
+}
+.calendar__button-calendar {
+  position: absolute;
+  right: 0;
+  left: 10px;
+}
+input::placeholder {
+  padding: 5px 30px;
+}
