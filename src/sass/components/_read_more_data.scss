@@ -1,0 +1,56 @@
+.container__read {
+    padding-top: 40px;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 40px;
+    @media screen and(min-width: 768px) {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    @media screen and(min-width: 1200px) {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+
+.date-list {
+    border-bottom: 1px solid #929292;;
+    text-align: start;
+    width: 100%;
+    margin-right: 8px;
+    margin-bottom: 40px;
+    @media screen and(min-width: 1200px) {
+        margin-bottom: 52px;
+    }
+}
+
+  .date-list-search {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+//   шрифт цифр
+
+  .date-list__data{
+    display: flex;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: calc(24 / 14);
+    letter-spacing: 0.02em;
+   // color:var(#111312);
+    color: #111312;
+  }
+
+//   свг
+
+.date-list__icon {
+    position: absolute;
+    &.turn {
+      transform: rotate(180deg);
+    }
+  }

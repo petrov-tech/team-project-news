@@ -1,0 +1,39 @@
+
+// Кольори, що використані у макеті
+// --------------------------------------
+:root {
+
+    --accent-color: #4440f6;
+    --text-color: #111321;
+    --gray-color: #a8a8a8;
+    --bg-color: #f4f4f4;
+    --white-color: #ffffff;
+    
+     // date
+    --footer-color: #7a7a7a;
+    // switcher colors
+    --switcher-gray-moon: #5f6775;
+    // --switcher-accent: #4b48db;
+    --switcher-accent-day: #4b48db;
+
+    // Dark Theme
+    body.darkMode {
+        --bg-color: #2e2e2e;
+        --text-color: #f4f4f4;
+        // switcher colors
+        --switcher-accent-day: #f4f4f4;
+        --switcher-gray-moon: #4440f7;
+    }
+}
+
+
+
+// Розміри для адаптивного екрану
+
+$pre_mobile: 479.98px;
+$pre_tablet: 767.98px;
+$pre_desktop: 1279.98px;
+
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1280px;
