@@ -2,7 +2,6 @@ import { format } from 'date-fns';
 const WEATHER_KEY = '8f21c518411d30fb59eece5d06557a72';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 
-
 let refs = {};
 function getWeatherRefs() {
   refs = {
@@ -24,8 +23,7 @@ async function fetchWeather() {
     const response = await fetch(url);
     const data = await response.json();
     return data;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 async function fetchWeatherByGeo(lat, lon) {
@@ -34,8 +32,7 @@ async function fetchWeatherByGeo(lat, lon) {
     const response = await fetch(url);
     const data = await response.json();
     return data;
-  } catch (error) {
-  }
+  } catch (error) {}
 }
 
 async function renderWeater() {
@@ -80,4 +77,4 @@ async function getGeoposition() {
   return;
 }
 
-// getWeatherRefs();
+getWeatherRefs();
