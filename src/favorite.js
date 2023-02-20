@@ -1,38 +1,32 @@
 import createCards from "./js/markup/index";
 
-const addToFavouriteBtn = querySelector(".item-news__add-to-favorite");
+const container = querySelector(".new");
 const containerCard = querySelector(".container-card");
-let toFavorite = [];
-if (toFavorite = true) {
-    toFavorite.push[idCards];
-};
+const toFavouriteBtn = querySelector(".item-news__add-to-favorite");
 
-localStorage.setItem("toFavorite", JSON.stringify(toFavorite));
+let data = [];
+
+localStorage.setItem("data", JSON.stringify(data));
 createCardsToHtml(data);
-addToFavouriteBtn.addEventListener('click', addTofavorite);
-
-function addTofavorite() {
-    toFavorite = true;
-    addToFavouriteBtn.textContent = "Remove from favorite";
-    addToFavouriteBtn.svg.use.href = "./images/symbol-defs.svg#icon-removefavorite";  
-    insertCard();
+container.addEventListener('click', addTofavorite);
+ 
+function addTofavorite(e) {
+    if (e.target.nodeName !== "BUTTON") {
+    return;
+    }    
+    const curentBtn = e.target.toFavouriteBtn;   
+    curentBtn.classList.replace(".item-news__add-to-favorite-btn", ".item-news__add-to-favorite-btn-remove");    
+    data.push(idCards);    
 };
-function insertCard(createCards) {     
-    containerCard.insertAdjacentHTML("beforeend", createCards);     
-};
 
-// addToFavouriteBtn.addEventListener('click', changeBtn);
-// function changeBtn() {
-//     addToFavouriteBtn.textContent = "Remove from favorite";
-//     addToFavouriteBtn.svg.use.href = "./images/symbol-defs.svg#icon-removefavorite";  
-// };
-
-addToFavouriteBtn.addEventListener('click', removeFromFromavorite);
-
-function removeFromFromavorite() {
-    if (toFavorite = false) {
-    toFavorite.splice(idCards.index, 1);
+container.addEventListener('click', removeFromFavorite);
+function removeFromFavorite() {
+     if (e.target.nodeName !== "BUTTON") {
+    return;
     };
+    const curentBtn = e.target.toFavouriteBtn;
+    curentBtn.classList.replace(".item-news__add-to-favorite-btn-remove", ".item-news__add-to-favorite-btn" )
+    data.splice(idCards.index, 1);    
 };
 
 function addCurentStylePage() {
