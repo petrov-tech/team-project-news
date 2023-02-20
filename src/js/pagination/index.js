@@ -1,37 +1,44 @@
-const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
-import { createCardsToHtml } from "../markup"; 
 
-paginationDiv.addEventListener("click",nextPage)
+import { createCardsToHtml } from "../markup"; 
+const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
+paginationDiv.addEventListener("click", toNextPage)  
+
 
 function generatePaginationButtons(currentPage, totalPages) {
-  const maxButtonsToShow = 7; // максимальна кількість кнопок для відображення
-    
+  
+ 
+  const maxButtonsToShow = 3; // максимальна кількість кнопок для відображення
+  
   // обчислюємо діапазон сторінок, який можна показати на даний момент
-  const startPage = Math.max(currentPage - Math.floor(maxButtonsToShow / 2) , 1);
+  const startPage = Math.max(currentPage - Math.floor(maxButtonsToShow/ 2 ) , 1);
   const endPage = Math.min(startPage + maxButtonsToShow , Math.ceil(totalPages));
 
   // створюємо HTML-код для кнопок пагінації
   let paginationHtml = '';
-
-  if (startPage > 1) {
-    paginationHtml += '<button class="pagination-button" data-page="1">&laquo;</button>';
-  }
   
-    for (let page = startPage; page <= endPage; page +=1) {
+  if (totalPages > 1) {
+        paginationHtml += `<button class="pagination-button pagination-button-scrol" data-page=" ${currentPage-1  } ">&laquo; Prew</button>`;
+  } 
+  
+  for (let page = startPage; page <= endPage; page += 1) {    
+             
     paginationHtml += `<button class="pagination-button ${page == currentPage ? "active" : " "}" data-page="${page}">${page}</button>`;
   }
 
-  if (endPage < totalPages) {
-    paginationHtml += `<button class="pagination-button" data-page="${totalPages}">&raquo;</button>`;
+  if (totalPages > 1) {
+    paginationHtml += `<button class="pagination-button pagination-button-scrol" data-page="${(-currentPage-1)}">&raquo; Next</button>`;
   }
 
-    paginationDiv.innerHTML= paginationHtml   
+  paginationDiv.innerHTML = paginationHtml
+
+  
+  
 }
 
-function nextPage(e) {
+function toNextPage(e) {
     
-    createCardsToHtml([], e.target.dataset.page)
-    
+    createCardsToHtml([], +(e.target.dataset.page))
+    scrollToTop()
 }
 function scrollToTop() {
   const scrollToTopDuration = 500; 

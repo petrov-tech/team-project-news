@@ -1,8 +1,15 @@
-import { data } from "./gallery3"
+
 import { generatePaginationButtons } from "../pagination"
+
+window.addEventListener('resize', function () {
+    const lastOriemtir = orientation
+    orientationFromBody()
+    if (lastOriemtir !== orientation) {
+        createCardsToHtml()
+    }
+});
     
 const news = document.getElementsByClassName("news")[0]
-
 const allCardsOnPage = []
 let paginationKoef = 4
 let numberPages = 1
@@ -13,7 +20,7 @@ let currectPage = 2
 let lastCuttectPage = 0
 
 
-createCardsToHtml(data,1)
+
 
 // перехід між сторінками createCardsToHtml([] ,3), має бути контейнер з класом news
 function createCardsToHtml(mass = allCardsOnPage, page = 1) {    
@@ -32,6 +39,11 @@ function createCardsToHtml(mass = allCardsOnPage, page = 1) {
     massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
     
     getMarkup(massPageCards,startMass)
+}
+function searchCards(mass) {
+    console.log("suka");
+    createCardsToHtml(mass)    
+    
 }
 // перехід між сторінками createCardsLast([] ,99,100), має бути контейнер з класом news
 function createCardsLast(mass , page = 100, maxPage = 100) {    
@@ -76,7 +88,8 @@ function getMarkup(massPageCards) {
    const mass = getHtmlMarkup(massPageCards)  
     news.innerHTML = ""
     news.insertAdjacentHTML("beforeend", mass)
-    if (currectPage !== lastCuttectPage) {generatePaginationButtons(currectPage, numberPages )}
+    if (currectPage !== lastCuttectPage) { generatePaginationButtons(currectPage, numberPages) }
+    
     
 }
 function getHtmlMarkup(massPageCards) {
@@ -139,7 +152,7 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
             imgUrl = lastValue
         }        
     }
-    if (imgUrl === "") imgUrl="./error.png"
+    if (imgUrl === "") imgUrl="https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
     dataFormt = getDataFormat(dataFormt)
     const paragraf = getFormatParagraf(abstract)
 
@@ -166,7 +179,7 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
 								width="16"
 								height="16"
 								viewBox="0 0 16 16"
-								><use href="/symbol-defs.a8b2e413.svg#icon-addfavorite"></use>
+								><use href="/team-project-news/symbol-defs.dc7755f7.svg#icon-addfavorite"></use>
 								</svg></span>
                       </button>                      
                   </div>
@@ -181,7 +194,7 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
                       <span class="item-news__info-date">${dataFormt}</span>
                       <a target="_blank" class="item-news__info-link" href="${
                         urlFormt
-                      }">Read more</a></div>                    
+                      }" target="_blank" rel="noreferrer noopener">Read more</a></div>                    
     </article>
     </li>
     `        
