@@ -73,6 +73,7 @@
     margin-bottom: 20px;
     max-width: 353px;
     @media screen and (min-width: $tablet) {
+        
         height: 240px;
     }
     @media screen and (min-width: $desktop) {
@@ -88,6 +89,15 @@
     font-style: normal;
     font-weight: 700;
     line-height: 1.375;
+    max-height: 150px;
+    overflow: hidden;
+    @media screen and (min-width: $tablet) {
+            height: 120px;
+        }
+    @media screen and (min-width: $desktop) {
+        
+        height: 150px;
+    }
 }
 .item-news__description {
     
@@ -117,6 +127,7 @@
 }
 .item-news__info-link {
     text-decoration: none;
+    cursor: url(../images/pointer.svg), pointer;
     color: var(--accent-color);
 }
 
@@ -148,7 +159,7 @@
 
    
 
-    cursor: pointer;
+    cursor: url(../images/pointer.svg), pointer;
     z-index: 2;    
     text-align: left;
     color: var(--text-color);
@@ -189,4 +200,7 @@
 }
 .item-news__block-icon {
     fill: var(--white-color);
+}
+.toJsHref {
+    display: none;
 }
