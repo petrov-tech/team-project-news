@@ -12,7 +12,7 @@ function getWeatherRefs() {
     year: document.querySelector('.weather__year'),
     img: document.querySelector('.weather__img'),
   };
-  renderWeater();
+  renderWeather();
   getGeoposition();
   return refs;
 }
@@ -35,7 +35,7 @@ async function fetchWeatherByGeo(lat, lon) {
   } catch (error) {}
 }
 
-async function renderWeater() {
+async function renderWeather() {
   const data = await fetchWeather();
   const { feels_like } = data.main;
   const weather = data.weather[0];
