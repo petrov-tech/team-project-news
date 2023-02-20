@@ -7,3 +7,15 @@ import creatCards from "./js/markup/index.js";
 const listCard = document.querySelector('.list__card');
 const dataList = document.querySelector('.date-list__data');
 const dataIcon = document.querySelector('.date-list__icon');
+
+
+
+const read = document.querySelector('.navigation_link')
+read.addEventListener('click', addCurrentPage)
+
+function addCurrentPage(e) {
+    e.classList.add('current')
+};
+addCurrentPage()
+
+//creatCards.
