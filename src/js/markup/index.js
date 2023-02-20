@@ -1,53 +1,80 @@
+import { data } from "./gallery";
+import { generatePaginationButtons } from "../pagination/index"
 
-
+const urlIcon = document.getElementsByClassName("calendar__button-arrow")[0].children[0].href.baseVal    
 const news = document.getElementsByClassName("news")[0]
-
+const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
 const allCardsOnPage = []
 let paginationKoef = 4
 let numberPages = 1
 let orientation = ""
-const feeltImg = ""
+const feeltImg = "https://user-images.githubusercontent.com/24848110/33519396-7e56363c-d79d-11e7-969b-09782f5ccbab.png"
 let massPageCards = []
+let currectPage = 2
+let lastCuttectPage = 0
+let searchBloom = false
+
+window.addEventListener('resize', function () {
+    const lastOriemtir = orientation
+    orientationFromBody()
+    
+    if (lastOriemtir !== orientation) {
+        createCardtToNews()
+    }
+});
 
 
+createCardsToHtml(data)
 
 // перехід між сторінками createCardsToHtml([] ,3), має бути контейнер з класом news
-function createCardsToHtml(mass = allCardsOnPage, page = 1) {    
-    orientationFromBody()    
-    mass.map((elem) => {
-        if (elem.idCards) {return allCardsOnPage.push(elem)}        
-        const mass = transformToFormat(elem)        
-        allCardsOnPage.push(mass)        
-    }).join("")    
+function createCardsToHtml(mass = allCardsOnPage, page = 1) {
+    searchBloom = false;
+    createCardtToNews(mass, page)
     
+}
+
+function searchCards(mass,page = 1) {
+    searchBloom = true;
+    createCardtToNews(mass, page) 
+    
+}
+
+
+function createCardtToNews(mass = allCardsOnPage, page = 1) {           
+    orientationFromBody()    
+     addToMassCards(mass)   
+    currectPage = page
     const startMass = page * paginationKoef - paginationKoef 
     numberPages = allCardsOnPage.length / paginationKoef    
-    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
+    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)
     
-    getMarkup(massPageCards,startMass)
+    
+    getMarkup(massPageCards, startMass)
+
+    if (currectPage !== lastCuttectPage && !searchBloom) {                     
+        paginationDiv.innerHTML = generatePaginationButtons(currectPage, numberPages);
+    }
+    
+    else if (currectPage !== lastCuttectPage && searchBloom) {
+
+       paginationDiv.innerHTML = generatePaginationButtons(currectPage, numberPages);                 
+    }
 }
-// перехід між сторінками createCardsLast([] ,99,100), має бути контейнер з класом news
-function createCardsLast(mass , page = 100, maxPage = 100) {    
-    orientationFromBody()    
-    mass.map((elem) => {
+
+function addToMassCards(elem) {
+    elem.map((elem) => {
         if (elem.idCards) {return allCardsOnPage.push(elem)}        
         const mass = transformToFormat(elem)        
         allCardsOnPage.push(mass)        
-    }).join("")    
-    
-    
-    const startMass = (maxPage - page + 1) * paginationKoef - paginationKoef  
-    numberPages = maxPage - (allCardsOnPage.length / paginationKoef)  
-    
-
-    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)  
-    
-    getMarkup(massPageCards,startMass)
+    }).join("") 
 }
 
 // вертає HTML розмітку без пагінації
 function loadCardsHtml(mass) {
     return "<ul class='list-news'>" + mass.map((elem) => {
+        // пошук на фаворіт
+
+
         return createCards(elem)
      }).join("") + "</ul>"
 
@@ -70,7 +97,7 @@ function orientationFromBody() {
 function getMarkup(massPageCards) {       
    const mass = getHtmlMarkup(massPageCards)  
     news.innerHTML = ""
-    news.insertAdjacentHTML("beforeend", mass) 
+    news.insertAdjacentHTML("beforeend", mass)        
 }
 function getHtmlMarkup(massPageCards) {
     return "<ul class='list-news'>" + massPageCards.map((elem, i) => {        
@@ -84,7 +111,8 @@ function getHtmlMarkup(massPageCards) {
     }).join("") + "</ul>"
 }
 function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, title, created_date, url,section_name,section,uri,media,published_date,id }) {
-    
+    const toRead = false
+    const toFavorite = false
     let imgUrl = ""
     let titleFormt = ""
     let dataFormt = ""
@@ -96,7 +124,7 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
         if (headline) {
             // масив за пошуком слова
             titleFormt = headline.main;
-            imgUrl = getFormatImg(multimedia[multimedia.length - 1].url);
+            imgUrl = getFormatImg(multimedia[0].url);
             dataFormt = pub_date;
             urlFormt = web_url;
             sectionFormt = section_name;
@@ -132,13 +160,13 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
             imgUrl = lastValue
         }        
     }
-    
+    if (imgUrl === "") imgUrl=feeltImg
     dataFormt = getDataFormat(dataFormt)
     const paragraf = getFormatParagraf(abstract)
 
     // тут якщо читали або фаворіт по ід провіряти
 
-  return  ({idCards,sectionFormt,titleFormt,paragraf,dataFormt,urlFormt,imgUrl})
+  return  ({idCards,sectionFormt,titleFormt,paragraf,dataFormt,urlFormt,imgUrl,toRead ,toFavorite })
 }
 
 function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataFormt, idCards,toRead = false,toFavorite = false }) {
@@ -153,17 +181,14 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
                           alt="">
                       <p class="item-news__category">${sectionFormt}</p>        
                       <button type="button" class="item-news__add-to-favorite ${toFavorite} ">
-                      <span class="item-news__add-to-favorite-btn">Add to favorite
-                         </span>
+                      <span class="item-news__add-to-favorite-btn">Add to favorite</span>
+                      <span class="item-news__add-to-favorite-btn-remove">Remove from favorite</span>
 								<svg class="item-news__block-icon active-news-icon"
 								width="16"
 								height="16"
-								viewBox="0 0 37 32"
-								>
+								viewBox="0 0 16 16"
+								><use href=" ${removeHash(urlIcon)}#icon-addfavorite"></use>
 								</svg></span>
-
-                        <span class="item-news__add-to-favorite-btn-remove">Remove from favorite
-                         
                       </button>                      
                   </div>
                   <div class="item-news__wrapper-text">
@@ -177,7 +202,7 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
                       <span class="item-news__info-date">${dataFormt}</span>
                       <a target="_blank" class="item-news__info-link" href="${
                         urlFormt
-                      }">Read more</a></div>                    
+                      }" target="_blank" rel="noreferrer noopener">Read more</a></div>                    
     </article>
     </li>
     `        
@@ -185,7 +210,10 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
 
 
 function getFormatParagraf(p) {
-    return p.slice(0,115) + "..."
+
+     return p.slice(0, 115) + "..."
+    
+
 }
 
 function getDataFormat(time) {
@@ -208,8 +236,15 @@ function getFormatImg(e) {
     return "https://static01.nyt.com/"+ e
 }
 function deleteCardsForNewSearch() {
-
+    searchBloom = false
     news.innerHTML = ""
     allCardsOnPage.length = 0
 }
-export {allCardsOnPage,orientation,massPageCards,numberPages, createCardsToHtml, deleteCardsForNewSearch,loadCardsHtml,createCardsLast}
+function removeHash(str) {
+  if (str.includes("#")) {
+    return str.substring(0, str.indexOf("#"));
+  } else {
+    return str;
+  }
+}
+export {allCardsOnPage,massPageCards,numberPages,searchBloom, createCardsToHtml, deleteCardsForNewSearch,loadCardsHtml,createCardsLast,searchCards,createCardtToNews}

@@ -34,21 +34,23 @@
 
 //   шрифт цифр
 
-//   .date-list__data{
-//     display: flex;
-//     font-family: 'Poppins';
-//     font-style: normal;
-//     font-weight: 400;
-//     font-size: 14px;
-//     line-height: calc(24 / 14);
-//     letter-spacing: 0.02em;
-//     color: #111312;
-//   }
+  .date-list__data{
+    display: flex;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: calc(24 / 14);
+    letter-spacing: 0.02em;
+   // color:var(#111312);
+    color: #111312;
+  }
 
 //   свг
 
-// .date-list__icon {
-//     &.turn {
-//       transform: rotate(180deg);
-//     }
-//   }
+.date-list__icon {
+    position: absolute;
+    &.turn {
+      transform: rotate(180deg);
+    }
+  }
