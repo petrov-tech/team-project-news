@@ -1,5 +1,6 @@
-import { data } from "./gallery";
+
 import { generatePaginationButtons } from "../pagination/index"
+import { getPopularArticle } from "../api";
 
 const urlIcon = document.getElementsByClassName("calendar__button-arrow")[0].children[0].href.baseVal    
 const news = document.getElementsByClassName("news")[0]
@@ -24,7 +25,8 @@ window.addEventListener('resize', function () {
 });
 
 
-createCardsToHtml(data)
+ getPopularArticle().then((e)=> createCardsToHtml(e))
+
 
 // перехід між сторінками createCardsToHtml([] ,3), має бути контейнер з класом news
 function createCardsToHtml(mass = allCardsOnPage, page = 1) {
