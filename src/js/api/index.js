@@ -23,7 +23,7 @@ async function getCategoryList() {
 }
 let sumPage;
 
-async function getSearchArticle(value, page) {
+async function getSearchArticle(value = lastSearch, page) {
   let dateForUrl = '';
   try {
     let date = JSON.parse(localStorage.getItem('date'))
