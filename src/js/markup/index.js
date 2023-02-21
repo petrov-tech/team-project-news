@@ -113,8 +113,8 @@ function getHtmlMarkup(massPageCards) {
     return "<ul class='list-news'>" + massPageCards.map((elem, i) => {        
         
         
-        const currentPage = location.pathname.match(/index.html/);
-        if (currentPage) {
+        const currentPage = location.pathname.match(/favorite.html/);
+        if (!currentPage) {
                 if (i === 0) {
                 if (orientation === 'mobile') { return addWetter(elem) }                      
                 return createCards(elem)
