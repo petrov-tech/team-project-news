@@ -1,5 +1,7 @@
 import { massPageCards } from './js/markup/index';
 import { createCardsToHtml } from './js/markup/index.js';
+import './js/mobile_menu/index';
+import './js/dark_mode/index';
 
 const container = document.querySelector('.news');
 // const containerCard = querySelector('.container-card');
