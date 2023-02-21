@@ -1,5 +1,4 @@
-const toggles = document.querySelectorAll('.switch_checkbox');  //откорректировать класс 
-
+const toggles = document.querySelectorAll('.checkbox_switch'); 
 let themeKey = localStorage.getItem("themeKey")|| 'light';
 
 const body = document.querySelector('body');
