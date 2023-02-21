@@ -14,11 +14,16 @@
 }
 
 .calendar-title--text {
-  font-family: 'Manrope';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.38;
+  display: none;
+
+  @media screen and (min-width: $desktop) {
+    display: inline;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.38;
+  }
 }
 .input-picker {
   width: 168px;
@@ -29,17 +34,30 @@
   position: relative;
 }
 .calendar_input {
-  width: 168px;
+  width: 151px;
   height: 31px;
-  gap: 18px;
-  font-size: 14px;
-  line-height: 1.5;
+  gap: 13px;
+  font-size: 12px;
+  line-height: 1.75;
   outline: none;
   border: 1px solid #111321;
   border-radius: 20px;
   padding: 0;
   text-align: center;
   color: #a8a8a8;
+  @media screen and (min-width: $tablet) {
+    width: 168px;
+    height: 31px;
+    gap: 18px;
+    font-size: 14px;
+    line-height: 1.5;
+    outline: none;
+    border: 1px solid #111321;
+    border-radius: 20px;
+    padding: 0;
+    text-align: center;
+    color: #a8a8a8;
+  }
 }
 .calendar__button-arrow {
   position: absolute;
@@ -52,4 +70,41 @@
 }
 input::placeholder {
   padding: 5px 30px;
+}
+
+.calendar_input.isActive::placeholder {
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--white-color);
+}
+
+.calendar_input.isActive {
+  background-color: var(--accent-color);
+  color: var(--white-color);
+  border-color: var(--accent-color);
+  border: 1px solid #4440f7;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+}
+
+.calendar__button-arrow {
+  fill: var(--accent-color);
+}
+.calendar__button-calendar {
+  fill: var(--accent-color);
+}
+
+.calendar__button-arrow.switched {
+  fill: var(--white-color);
+  transform: rotateX(180deg);
+
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.calendar__button-calendar.switchedColor {
+  z-index: 1;
+  fill: #ffffff;
+
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
