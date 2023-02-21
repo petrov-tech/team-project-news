@@ -106,8 +106,10 @@ window.addEventListener('load', function () {
 });
 
 // Call the function when the width of the window changes
-window.addEventListener('resize', function () {
-  setTimeout(getWeatherRefs, 1000);
-});
+
+// window.addEventListener('resize', function() {
+//   setTimeout(getWeatherRefs, 1000);
+// });
+
 
 export { getWeatherRefs };

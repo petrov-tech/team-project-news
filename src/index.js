@@ -3,7 +3,7 @@ import './js/weather/index';
 import './js/calendar/index';
 import './js/dark_mode/index';
 // import './favorite';
-import './read';
+// import './read';
 import './js/favorite_search/index';
 import './js/listener/index';
 import './js/mobile_menu/index';

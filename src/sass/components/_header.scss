@@ -10,28 +10,59 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   
 
-  // &__container {
-  //   display: flex;
-  //   align-items: center;
-  //   // justify-content: space-between;
-  // }
+  &__container {
+    margin: 0 auto;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
 
+    @media screen and (max-width: $pre_tablet) {
+        max-width: 480px;
+    }
+
+    @media screen and (min-width: $tablet) {
+        width: 768px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        width: 1280px;
+    }
+  }
 }
 
 .navigation {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: space-between;
+  // position: relative; 
+ 
 
   &__logo {
-    
-    padding: 28px 0px;
+    padding: 24px 0px;
     font-family: 'Manrope';
     font-weight: 700;
-    font-size: 42px;
-    line-height: 1.36;
-
+    font-size: 24px;
+    line-height: 1.37;
     color: var(--text-color);
+
+    @media screen and (min-width: $tablet) {
+      padding: 31px 0px;
+      font-size: 32px;
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding: 28px 0px;
+      font-size: 42px;
+      line-height: 1.36;
+    }
+  }
+
+  .mobile-burger-btn {
+    height: 24px;
+
+    @media screen and (min-width: $tablet) {
+      display: none;
+    }
   }
 
   &__wrap {
@@ -40,99 +71,183 @@
     }
 
   &_list {
-    display: flex;
-    gap: 69px;
-  }
-  
-  &_item{
+    display: none;
     
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      gap: 44px;
+    }
 
-    &.current {
-      border-bottom: 1px solid var(--switcher-gray-moon);
+    @media screen and (min-width: $desktop) {
+      gap: 69px;
     }
   }
-
+  
   &_link {
-    display: block;
-    position: relative;
-    padding-top: 55px;
-    padding-bottom: 33px;
-    font-family: 'Manrope';
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.38;
-    color: var(--text-color);
+    display: none;
+
+    @media screen and (min-width: $tablet) {
+      display: block;
+      position: relative;
+      padding-top: 48px;
+      padding-bottom: 36px;
+      font-family: 'Manrope';
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 1.37;
+      color: var(--text-color);
+
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding-top: 55px;
+      padding-bottom: 33px;
+      font-size: 18px;
+      line-height: 1.38;
+    }
 
   }
 
 }
 
-.navigation_link--current::after {
-    content: "";
-    position: absolute;
-    top: 85px;
-    left: -5px;
-    width: 120%;
-    height: 1px;
-    background-color: #4440F7;
+.mobile-search-btn {
+  margin-right: 17px;
+ 
 }
 
+.navigation_link.current::after {
+    
+
+    @media screen and (min-width: $tablet) {
+      content: "";
+      position: absolute;
+      top: 78px;
+      left: -5px;
+      width: 120%;
+      height: 1px;      
+      border-bottom: 1px solid #4440F7;
+    }
+
+    @media screen and (min-width: $desktop) {
+      top: 85px;
+      color: #4440F7;
+    }
+}
 
 /* Search-form */
 
+.form-wrap {
+    display: none;
+
+    @media screen and (min-width: $tablet) {
+      display: flex;
+      padding-top: 44px;
+      padding-bottom: 31px;
+      position: relative; 
+    }
+
+    @media screen and (min-width: $desktop) {
+      padding-top: 50px;
+      padding-bottom: 30px;
+    }
+}
+
 .search-form {
-  display: flex;
-  align-items: center;
-  padding-top: 50px;
-  padding-bottom: 30px;
-  
-  &-wrap {
+  display: none;
+
+  @media screen and (min-width: $tablet) {
     display: flex;
-    
+    align-items: center;
     border: 1px solid var(--text-color);
     border-radius: 20px; 
     position: relative; 
   }
   
   &-input {
-    display: block;
-    cursor: pointer;
-    width: 242px;
-    height: 29px;
-    padding-left: 42px;
-    background: none;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-color);
+    
+
+    @media screen and (min-width: $tablet) {
+      width: 148px;
+      height: 27px;
+      cursor: pointer;
+      padding-left: 48px;
+      padding-right: 15px;
+      background: none;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-color) 
+    }
+
+    @media screen and (min-width: $desktop) {
+      width: 229px;
+      
+      padding-left: 42px;
+      font-size: 16px;
+    }
+
 
     &::placeholder {
-      padding-left: 0;
-      font-family: 'Poppins';
-      line-height: 1.71;
-      letter-spacing: 0.02em;
-      opacity: 0.4;
+      
+
+      @media screen and (min-width: $tablet) {
+        padding-left: 0;
+        font-family: 'Poppins';
+        line-height: 1.71;
+        letter-spacing: 0.02em;
+        opacity: 0.4;
+      }
+  
     }
+
+
   }
 }
 
-.search-form-btn svg{
-  position: absolute;
-  top: 50%;
-  left: 14px;
-  transform: translateY(-50%);
+.search-form-btn {
+  // display: block;
+
+  @media screen and (min-width: $tablet) {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+  }
   
 }
 
+.search {
+  display: block;
+}
+
+
+
+
 /* Toogle light/dark */
 .toogle-container {
-  width: 148px;
-  padding-top: 49px;
-  padding-bottom: 39px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  
+  
+  @media screen and (max-width: $pre_tablet) {
+    display: none;
+  }
+
+  @media screen and (max-width: $pre_desktop) {
+    width: 98px;
+  }
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 49px;
+    padding-bottom: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 148px;;
+    padding-bottom: 39px;
+  }
 
 }
 
@@ -141,15 +256,58 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.33;
-  
+
+   
 
   &-light {
     color: var(--switcher-accent-day);
+
+    
   }
 
   &-dark {
     color: var(--switcher-gray-moon);
+
+    // @media screen and (min-width: $tablet) and (max-width: $desktop) {
+    //   display: none;
+    // }
   }
+}
+
+.toogle-wrap span {
+
+  @media screen and (max-width: $pre_desktop) {
+    display: none;
+  }
+
+  @media screen and (min-width: $desktop) {
+    display: flex;
+  }
+
+
+}
+
+.toogle-wrap svg {
+  @media screen and (max-width: $pre_desktop) {
+    display: flex;
+  }
+
+  @media screen and (min-width: $desktop) {
+    display: none;
+  }
+}
+
+.burger-toogle-container {
+  
+
+  @media screen and (max-width: $pre_tablet) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 98px;
+    padding-left: 16px;
+    margin-bottom: 18px;
+    }
 }
 
 
@@ -164,6 +322,7 @@
 /* Hide default HTML checkbox */
 .switch input {
   display:none;
+  margin: 0;
 }
 
 /* The slider */
@@ -210,4 +369,92 @@ input:checked + .slider:before {
   right: 1px;
   transform: translate(110%, -50%);
   background-color: var(--white-color);
+}
+
+/*Burger-menu*/
+
+.burger_menu-conteiner {
+  z-index: 130;
+  width: 100%;
+  // background-color: lime;
+  background: var(--bg-color);
+  position: absolute;
+  top: 100%;
+  right: 0px;
+  transition: var(--animation-timing-function);
+  
+
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
+}
+
+.menu-is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.burger_menu-list {
+  margin-top: 44px;
+  margin-bottom: 248px;
+}
+
+.burger_menu-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-left: 16px;
+  gap: 14px;
+  height: 44px;
+
+  .burger_menu-item:last-child {
+    margin-bottom: 0px;
+  }
+
+  &:focus,
+  &:hover,
+  &:active {
+      background: var(--accent-color);
+      
+    }
+
+    &:focus svg,
+    &:hover svg,
+    &:active svg {
+     fill: var(--bg-color);
+     
+    } 
+
+}
+
+.burger_menu-text {
+  font-family: ''Manrope'';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.37;
+  color: var(--text-color);
+
+  &:focus,
+  &:hover,
+  &:active {
+      color: var(--bg-color);
+      
+    }
+
+}
+
+.icon-cross {
+  position: absolute;
+  height: 24px;
+  right: 16px;
+  top: -53px;
+  border: none;
+  outline: none;
+  background-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
