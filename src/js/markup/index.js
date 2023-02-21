@@ -182,7 +182,7 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
                           src="${imgUrl}"
                           alt="">
                       <p class="item-news__category">${sectionFormt}</p>        
-                      <button type="button" class="item-news__add-to-favorite ${toFavorite} ">
+                      <button type="button" class="item-news__add-to-favorite ${toFavorite} " data-id="${idCards}">
                       <span class="item-news__add-to-favorite-btn">Add to favorite</span>
                       <span class="item-news__add-to-favorite-btn-remove">Remove from favorite</span>
 								<svg class="item-news__block-icon active-news-icon"
@@ -201,8 +201,8 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
                       ${paragraf}</p>
                   </div>
                   <div class="item-news__info">
-                      <span class="item-news__info-date">${dataFormt}</span>
-                      <a target="_blank" class="item-news__info-link" href="${
+                      <span class="item-news__info-date" >${dataFormt}</span>
+                      <a target="_blank" class="item-news__info-link" data-id="${idCards}" href="${
                         urlFormt
                       }" target="_blank" rel="noreferrer noopener">Read more</a></div>                    
     </article>
