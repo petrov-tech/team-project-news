@@ -21,7 +21,7 @@ window.addEventListener('resize', function () {
     orientationFromBody()
     
     if (lastOriemtir !== orientation) {
-        createCardtToNews()
+        createCardtToNews([])
     }
 });
 
@@ -43,23 +43,20 @@ function searchCards(mass,page = 1) {
 }
 
 
-function createCardtToNews(mass = allCardsOnPage, page = 1) {           
-    orientationFromBody()    
-     addToMassCards(mass)   
-    currectPage = page
-    const startMass = page * paginationKoef - paginationKoef 
-    numberPages = allCardsOnPage.length / paginationKoef    
-    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)
+function createCardtToNews(mass = allCardsOnPage, page = 1) { 
+    addToMassCards(mass) 
+    const startMass = orientationFromBody(page)    
+     getMarkup(massPageCards, startMass)  
     
     
-    getMarkup(massPageCards, startMass)
 
-    if (currectPage !== lastCuttectPage && !searchBloom) {                     
+    if (currectPage !== lastCuttectPage && !searchBloom) { 
+        
         paginationDiv.innerHTML = generatePaginationButtons(currectPage, numberPages);
     }
     
     else if (currectPage !== lastCuttectPage && searchBloom) {
-
+        
        paginationDiv.innerHTML = generatePaginationButtons(currectPage, numberPages);                 
     }
 }
@@ -82,8 +79,9 @@ function loadCardsHtml(mass) {
      }).join("") + "</ul>"
 
 }
-function orientationFromBody() {
+function orientationFromBody(page) {
     const widthBody = document.body.clientWidth
+
     
     if (widthBody > 1280) {
         orientation ='desktop'
@@ -94,7 +92,13 @@ function orientationFromBody() {
     } else {orientation ='mobile'
         paginationKoef = 4
     }
-    
+
+
+    currectPage = page
+    const startMass = page * paginationKoef - paginationKoef 
+    numberPages = allCardsOnPage.length / paginationKoef    
+    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)
+    return startMass
 }
 
 function getMarkup(massPageCards) {       
