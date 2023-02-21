@@ -22,10 +22,14 @@ async function getCategoryList() {
   return results;
 }
 let sumPage;
-
+let lastSearch = '';
 async function getSearchArticle(value = lastSearch, page) {
   let dateForUrl = '';
-  lastSearch = value;
+  if (value === '') {
+    value = lastSearch;
+  } else {
+    lastSearch = value;
+  }
   try {
     let date = JSON.parse(localStorage.getItem('date'))
       .replace('/', '')
