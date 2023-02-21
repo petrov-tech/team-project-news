@@ -106,9 +106,9 @@ function getMarkup(massPageCards) {
    const mass = getHtmlMarkup(massPageCards)  
     news.innerHTML = ""
     news.insertAdjacentHTML("beforeend", mass)
-    
+
     const currentPage = location.pathname.match(/favorite.html/);
-    if (currentPage) { getWeatherRefs() }
+    if (!currentPage) { getWeatherRefs() }
 }
 function getHtmlMarkup(massPageCards) {
     return "<ul class='list-news'>" + massPageCards.map((elem, i) => {        
