@@ -44,7 +44,8 @@
   border-radius: 20px;
   padding: 0;
   text-align: center;
-  color: #a8a8a8;
+  cursor: url(../images/pointer.svg), pointer;
+  color: var(--gray-color);
   @media screen and (min-width: $tablet) {
     width: 168px;
     height: 31px;
@@ -56,7 +57,7 @@
     border-radius: 20px;
     padding: 0;
     text-align: center;
-    color: #a8a8a8;
+    color: var(--gray-color);
   }
 }
 .calendar__button-arrow {
@@ -103,7 +104,7 @@ input::placeholder {
 }
 .calendar__button-calendar.switchedColor {
   z-index: 1;
-  fill: #ffffff;
+  fill: var(--white-color);
 
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
