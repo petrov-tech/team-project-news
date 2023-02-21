@@ -179,6 +179,7 @@
     }
 }
 
+
 // ------------------------------------------------------------------
 // анимация loader spinner (загрузки)
 
@@ -220,5 +221,6 @@
     }
 }
 
-// .filter-category__item-bt {
-//     cursor: url(../images/cursor-hand.svg), pointer;
+.filter-category__item-bt {
+    cursor: url(/src/images/pointer.svg), pointer;
+}
