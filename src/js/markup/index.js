@@ -1,5 +1,5 @@
 
-import { generatePaginationButtons } from "../pagination/index"
+import { generatePaginationButtons, newSearchToNextPage } from "../pagination/index"
 import { getPopularArticle } from "../api";
 
 const urlIcon = document.getElementsByClassName("calendar__button-arrow")[0].children[0].href.baseVal    
@@ -15,6 +15,7 @@ let currectPage = 2
 let lastCuttectPage = 0
 let searchBloom = false
 
+
 window.addEventListener('resize', function () {
     const lastOriemtir = orientation
     orientationFromBody()
@@ -26,7 +27,7 @@ window.addEventListener('resize', function () {
 
 
  getPopularArticle().then((e)=> createCardsToHtml(e))
-
+    
 
 // перехід між сторінками createCardsToHtml([] ,3), має бути контейнер з класом news
 function createCardsToHtml(mass = allCardsOnPage, page = 1) {
@@ -238,6 +239,7 @@ function getFormatImg(e) {
     return "https://static01.nyt.com/"+ e
 }
 function deleteCardsForNewSearch() {
+    newSearchToNextPage()
     searchBloom = false
     news.innerHTML = ""
     allCardsOnPage.length = 0
@@ -249,4 +251,4 @@ function removeHash(str) {
     return str;
   }
 }
-export {allCardsOnPage,massPageCards,numberPages,searchBloom, createCardsToHtml, deleteCardsForNewSearch,loadCardsHtml,createCardsLast,searchCards,createCardtToNews}
+export {allCardsOnPage,massPageCards,numberPages,searchBloom, createCardsToHtml, deleteCardsForNewSearch,loadCardsHtml,createCardsLast,searchCards,createCardtToNews,addToMassCards}
