@@ -26,7 +26,7 @@ window.addEventListener('resize', function () {
 });
 
 
- getPopularArticle().then((e)=> searchCards(e))
+ getPopularArticle().then((e)=> createCardsToHtml(e))
     
 
 // перехід між сторінками createCardsToHtml([] ,3), має бути контейнер з класом news
