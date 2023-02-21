@@ -1,5 +1,5 @@
 // import { massPageCards } from './js/markup/index';
-import { createCardsToHtml } from './js/markup/index';
+// import { createCardsToHtml }  from './js/markup/index.js';
 
 const container = querySelector('.new');
 // const containerCard = querySelector('.container-card');
@@ -22,8 +22,11 @@ function addTofavorite(e) {
     '.item-news__add-to-favorite-btn-remove'
   );
   const favoriteCard = e.target.dataset.id;  
-  data.push(favoriteCard);
-}
+  const cardId = massPageCards.map(massPageCard => massPageCard.idCards);
+  if (cardId = favoriteCard) {
+    data.push(cardId);
+  };  
+};
 
 container.addEventListener('click', removeFromFavorite);
 function removeFromFavorite() {
@@ -36,8 +39,11 @@ function removeFromFavorite() {
     '.item-news__add-to-favorite-btn'
   );
   const favoriteCard = e.target.dataset.id;  
-  data.splice(favoriteCard, 1);
-}
+  const cardId = data.map(data => data.idCards);
+  if (cardId = favoriteCard) {
+    data.splice(favoriteCard, 1);
+  };  
+};
 
 
 navList.addEventListener('click', addCurentStylePage);
