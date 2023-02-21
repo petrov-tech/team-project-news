@@ -22,9 +22,14 @@ async function getCategoryList() {
   return results;
 }
 let sumPage;
-
-async function getSearchArticle(value, page) {
+let lastSearch = '';
+async function getSearchArticle(value = lastSearch, page) {
   let dateForUrl = '';
+  if (value === '') {
+    value = lastSearch;
+  } else {
+    lastSearch = value;
+  }
   try {
     let date = JSON.parse(localStorage.getItem('date'))
       .replace('/', '')
@@ -35,7 +40,7 @@ async function getSearchArticle(value, page) {
     // dateForUrl = '';
   }
   const articleFetch = await fetch(
-    `${BASE_URL}/search/v2/articlesearch.json?${KEY}`
+    `${BASE_URL}/search/v2/articlesearch.json?q=${value}&${KEY}&page=${page}${dateForUrl}`
   );
   const articles = await articleFetch.json();
 
@@ -60,10 +65,10 @@ async function getSearchArticle(value, page) {
 
 async function getArticleByCategory(value) {
   try {
-    // let newValue = encodeURIComponent(value);
+    let newValue = encodeURIComponent(value);
 
     const articleFetch = await fetch(
-      `${BASE_URL}/news/v3/content/all.json?${KEY}&limit=26`
+      `${BASE_URL}/news/v3/content/all/${newValue}.json?${KEY}&limit=26`
     );
 
     const articles = await articleFetch.json();

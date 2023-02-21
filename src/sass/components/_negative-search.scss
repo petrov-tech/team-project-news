@@ -1,0 +1,41 @@
+.not-found {
+  text-align: center;
+  margin: 40px 0 59px 0;
+
+  @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+    margin: 88px 0 101px 0;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin: 121px 0 226px 0;
+  }
+
+  //   &--hidden {
+  //     display: none;
+  //   }
+}
+
+.not-found__text {
+  font-weight: 700;
+  color: #111321;
+  //   color: var(--text-color);
+  font-size: 20px;
+  line-height: 1.4;
+
+  @media screen and (min-width: $tablet) {
+    font-size: 40px;
+  }
+}
+
+.not-found__img {
+  margin: 40px auto 0;
+  width: 248px;
+
+  @media screen and (min-width: $tablet) and (max-width: $pre_desktop) {
+    width: 560px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 601px;
+  }
+}

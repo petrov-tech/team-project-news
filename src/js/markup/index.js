@@ -1,5 +1,5 @@
 
-import { generatePaginationButtons } from "../pagination/index"
+import { generatePaginationButtons, newSearchToNextPage } from "../pagination/index"
 import { getPopularArticle } from "../api";
 
 const urlIcon = document.getElementsByClassName("calendar__button-arrow")[0].children[0].href.baseVal    
@@ -15,18 +15,19 @@ let currectPage = 2
 let lastCuttectPage = 0
 let searchBloom = false
 
+
 window.addEventListener('resize', function () {
     const lastOriemtir = orientation
     orientationFromBody()
     
     if (lastOriemtir !== orientation) {
-        createCardtToNews()
+        createCardtToNews([])
     }
 });
 
 
  getPopularArticle().then((e)=> createCardsToHtml(e))
-
+    
 
 // перехід між сторінками createCardsToHtml([] ,3), має бути контейнер з класом news
 function createCardsToHtml(mass = allCardsOnPage, page = 1) {
@@ -42,23 +43,20 @@ function searchCards(mass,page = 1) {
 }
 
 
-function createCardtToNews(mass = allCardsOnPage, page = 1) {           
-    orientationFromBody()    
-     addToMassCards(mass)   
-    currectPage = page
-    const startMass = page * paginationKoef - paginationKoef 
-    numberPages = allCardsOnPage.length / paginationKoef    
-    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)
+function createCardtToNews(mass = allCardsOnPage, page = 1) { 
+    addToMassCards(mass) 
+    const startMass = orientationFromBody(page)    
+     getMarkup(massPageCards, startMass)  
     
     
-    getMarkup(massPageCards, startMass)
 
-    if (currectPage !== lastCuttectPage && !searchBloom) {                     
+    if (currectPage !== lastCuttectPage && !searchBloom) { 
+        
         paginationDiv.innerHTML = generatePaginationButtons(currectPage, numberPages);
     }
     
     else if (currectPage !== lastCuttectPage && searchBloom) {
-
+        
        paginationDiv.innerHTML = generatePaginationButtons(currectPage, numberPages);                 
     }
 }
@@ -81,8 +79,9 @@ function loadCardsHtml(mass) {
      }).join("") + "</ul>"
 
 }
-function orientationFromBody() {
+function orientationFromBody(page) {
     const widthBody = document.body.clientWidth
+
     
     if (widthBody > 1280) {
         orientation ='desktop'
@@ -93,7 +92,13 @@ function orientationFromBody() {
     } else {orientation ='mobile'
         paginationKoef = 4
     }
-    
+
+
+    currectPage = page
+    const startMass = page * paginationKoef - paginationKoef 
+    numberPages = allCardsOnPage.length / paginationKoef    
+    massPageCards = allCardsOnPage.slice(startMass, startMass + paginationKoef)
+    return startMass
 }
 
 function getMarkup(massPageCards) {       
@@ -182,7 +187,7 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
                           src="${imgUrl}"
                           alt="">
                       <p class="item-news__category">${sectionFormt}</p>        
-                      <button type="button" class="item-news__add-to-favorite ${toFavorite} ">
+                      <button type="button" class="item-news__add-to-favorite ${toFavorite} " data-id="${idCards}">
                       <span class="item-news__add-to-favorite-btn">Add to favorite</span>
                       <span class="item-news__add-to-favorite-btn-remove">Remove from favorite</span>
 								<svg class="item-news__block-icon active-news-icon"
@@ -201,8 +206,8 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
                       ${paragraf}</p>
                   </div>
                   <div class="item-news__info">
-                      <span class="item-news__info-date">${dataFormt}</span>
-                      <a target="_blank" class="item-news__info-link" href="${
+                      <span class="item-news__info-date" >${dataFormt}</span>
+                      <a target="_blank" class="item-news__info-link" data-id="${idCards}" href="${
                         urlFormt
                       }" target="_blank" rel="noreferrer noopener">Read more</a></div>                    
     </article>
@@ -238,6 +243,7 @@ function getFormatImg(e) {
     return "https://static01.nyt.com/"+ e
 }
 function deleteCardsForNewSearch() {
+    newSearchToNextPage()
     searchBloom = false
     news.innerHTML = ""
     allCardsOnPage.length = 0
@@ -249,4 +255,4 @@ function removeHash(str) {
     return str;
   }
 }
-export {allCardsOnPage,massPageCards,numberPages,searchBloom, createCardsToHtml, deleteCardsForNewSearch,loadCardsHtml,createCardsLast,searchCards,createCardtToNews}
+export {allCardsOnPage,massPageCards,numberPages,searchBloom, createCardsToHtml, deleteCardsForNewSearch,loadCardsHtml,createCardsLast,searchCards,createCardtToNews,addToMassCards}
