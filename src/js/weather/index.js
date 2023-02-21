@@ -101,4 +101,11 @@ async function getGeoposition() {
 }
 
 // Call the function to get the weather data
-setTimeout(getWeatherRefs, 1000);
+window.addEventListener('load', function() {
+  setTimeout(getWeatherRefs, 1000);
+});
+
+// Call the function when the width of the window changes
+window.addEventListener('resize', function() {
+  setTimeout(getWeatherRefs, 1000);
+});
