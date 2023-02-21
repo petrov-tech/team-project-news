@@ -1,6 +1,7 @@
 
 import { generatePaginationButtons, newSearchToNextPage } from "../pagination/index"
 import { getPopularArticle } from "../api";
+import { getWeatherRefs } from "../weather";
 
 const urlIcon = document.getElementsByClassName("calendar__button-arrow")[0].children[0].href.baseVal    
 const news = document.getElementsByClassName("news")[0]
@@ -92,7 +93,8 @@ function orientationFromBody(page) {
     } else {orientation ='mobile'
         paginationKoef = 4
     }
-
+    const currentPage = location.pathname.match(/favorite.html/);
+    if (currentPage) { paginationKoef += 1 }
 
     currectPage = page
     const startMass = page * paginationKoef - paginationKoef 
@@ -104,16 +106,26 @@ function orientationFromBody(page) {
 function getMarkup(massPageCards) {       
    const mass = getHtmlMarkup(massPageCards)  
     news.innerHTML = ""
-    news.insertAdjacentHTML("beforeend", mass)        
+    news.insertAdjacentHTML("beforeend", mass)
+    getWeatherRefs()
 }
 function getHtmlMarkup(massPageCards) {
     return "<ul class='list-news'>" + massPageCards.map((elem, i) => {        
-        if (i === 0) {
-            if (orientation === 'mobile') { return addWetter(elem) }                      
-            return createCards(elem)
+        
+        
+        const currentPage = location.pathname.match(/index.html/);
+        if (currentPage) {
+                if (i === 0) {
+                if (orientation === 'mobile') { return addWetter(elem) }                      
+                return createCards(elem)
+            } 
+            else if (i === 1) { if (orientation === 'tablet') { return addWetter(elem) } }
+            else if (i === 2) { if (orientation === 'desktop') { return addWetter(elem) } }            
         } 
-        else if (i === 1) { if (orientation === 'tablet') { return addWetter(elem) } }
-        else if (i === 2) { if (orientation === 'desktop') { return addWetter(elem) } }        
+
+
+
+
         return createCards(elem)
     }).join("") + "</ul>"
 }
@@ -255,4 +267,5 @@ function removeHash(str) {
     return str;
   }
 }
-export {allCardsOnPage,massPageCards,numberPages,searchBloom, createCardsToHtml, deleteCardsForNewSearch,loadCardsHtml,createCardsLast,searchCards,createCardtToNews,addToMassCards}
+export { allCardsOnPage, massPageCards, numberPages, searchBloom, createCardsToHtml, deleteCardsForNewSearch, loadCardsHtml, createCardsLast, searchCards, createCardtToNews, addToMassCards }
+
