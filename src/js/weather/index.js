@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 
 // Store the API key, default city and base URL for the OpenWeatherMap API in constants
-const WEATHER_KEY = '8f21c518411d30fb59eece5d06557a72';
+const WEATHER_KEY = '7d2404408b4504531781bb097acfb8ef';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather?';
 const SEARCH_CITY = "Kyiv"
 // Create an empty object to store references to DOM elements
@@ -109,3 +109,6 @@ window.addEventListener('load', function() {
 window.addEventListener('resize', function() {
   setTimeout(getWeatherRefs, 1000);
 });
+
+
+export {getWeatherRefs}
