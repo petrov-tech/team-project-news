@@ -2,8 +2,7 @@
 import { generatePaginationButtons, newSearchToNextPage } from "../pagination/index"
 import { getPopularArticle } from "../api";
 import { getWeatherRefs } from "../weather";
-
-const urlIcon = document.getElementsByClassName("calendar__button-arrow")[0].children[0].href.baseVal    
+  
 const news = document.getElementsByClassName("news")[0]
 const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
 const allCardsOnPage = []
@@ -206,7 +205,8 @@ function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataF
 								width="16"
 								height="16"
 								viewBox="0 0 16 16"
-								><use href=" ${removeHash(urlIcon)}#icon-addfavorite"></use>
+								><path d="M4.66683 2C2.82616 2 1.3335 3.47733 1.3335 5.3C1.3335 6.77133 1.91683 10.2633 7.65883 13.7933C7.76168 13.8559 7.87976 13.889 8.00016 13.889C8.12056 13.889 8.23864 13.8559 8.3415 13.7933C14.0835 10.2633 14.6668 6.77133 14.6668 5.3C14.6668 3.47733 13.1742 2 11.3335 2C9.49283 2 8.00016 4 8.00016 4C8.00016 4 6.5075 2 4.66683 2Z" stroke="#4440F7" stroke-linecap="round" stroke-linejoin="round"/>
+
 								</svg></span>
                       </button>                      
                   </div>
