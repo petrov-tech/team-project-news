@@ -2,7 +2,7 @@ import './js/markup/index';
 import './js/weather/index';
 import './js/calendar/index';
 import './js/dark_mode/index';
-// import './favorite';
+import './favorite';
 import './read';
 import './js/favorite_search/index';
 import './js/listener/index';
