@@ -25,6 +25,7 @@ let sumPage;
 
 async function getSearchArticle(value = lastSearch, page) {
   let dateForUrl = '';
+  lastSearch = value;
   try {
     let date = JSON.parse(localStorage.getItem('date'))
       .replace('/', '')
