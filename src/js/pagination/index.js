@@ -1,8 +1,10 @@
 const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
-import { createCardtToNews,searchBloom } from "../markup";
+import { createCardtToNews, searchBloom, allCardsOnPage, addToMassCards } from "../markup";
+import { getSearchArticle } from "../api";
 
 paginationDiv.addEventListener("click",nextPage)
 let lastPages = 3
+let pageToBackend = 2
 
 function generatePaginationButtons(currentPage, totalPages) {
    
@@ -38,11 +40,10 @@ function generatePaginationButtons(currentPage, totalPages) {
 function nextPage(e) {
   
     if (e.target.nodeName !== "BUTTON") {    return;    } 
-  if (lastPages - e.target.dataset.page <= 1 && searchBloom) {
-
-    // //сюда масив пошуку т
-    // addToMassCards(mass)
-    // console.log(lastPages, e.target.dataset.page, "load",searchBloom);
+  if (lastPages - e.target.dataset.page <= 2 && searchBloom) {
+    console.log("suda");
+    getSearchArticle("", pageToBackend).then((e) => { addToMassCards(e) })
+    pageToBackend += 1
   }
     createCardtToNews([], +(e.target.dataset.page))
     scrollToTop()
@@ -59,5 +60,8 @@ function scrollToTop() {
     }
   }, 15);
 }
+function newSearchToNextPage() {
+  pageToBackend = 2 
+}
 
-export {generatePaginationButtons,scrollToTop}
+export {generatePaginationButtons,scrollToTop,newSearchToNextPage}
