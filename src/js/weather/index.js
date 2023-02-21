@@ -1,9 +1,9 @@
 import { format } from 'date-fns';
 
 // Store the API key, default city and base URL for the OpenWeatherMap API in constants
-const WEATHER_KEY = '7d2404408b4504531781bb097acfb8ef';
+const WEATHER_KEY = '8f21c518411d30fb59eece5d06557a72';
 const BASE_URL = 'https://api.openweathermap.org/data/2.5/weather?';
-const SEARCH_CITY = "Kyiv"
+const SEARCH_CITY = 'Kyiv';
 // Create an empty object to store references to DOM elements
 let refs = {};
 
@@ -54,13 +54,13 @@ async function renderWeather() {
   // fetch weather data for default location
   const data = await fetchWeather();
   const { feels_like } = data.main;
-  const weather = data.weather[0]; 
-  const { icon } = data.weather[0]; 
-  refs.degs.textContent = `${Math.floor(feels_like)}°`; 
-  refs.weather.textContent = weather.main; 
-  refs.city.textContent = data.name; 
+  const weather = data.weather[0];
+  const { icon } = data.weather[0];
+  refs.degs.textContent = `${Math.floor(feels_like)}°`;
+  refs.weather.textContent = weather.main;
+  refs.city.textContent = data.name;
 
-  refs.day.textContent = format(new Date(), 'eee'); 
+  refs.day.textContent = format(new Date(), 'eee');
   refs.year.textContent = format(new Date(), 'dd LLL y');
   refs.img.setAttribute(
     'src',
@@ -81,7 +81,7 @@ async function getGeoposition() {
           const { temp } = data.main;
           const weather = data.weather[0];
           const { icon } = data.weather[0];
-          
+
           // Update the DOM with the weather data
           refs.degs.textContent = `${Math.floor(temp)}°`;
           refs.weather.textContent = weather.main;
@@ -101,14 +101,13 @@ async function getGeoposition() {
 }
 
 // Call the function to get the weather data
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   setTimeout(getWeatherRefs, 1000);
 });
 
 // Call the function when the width of the window changes
-window.addEventListener('resize', function() {
+window.addEventListener('resize', function () {
   setTimeout(getWeatherRefs, 1000);
 });
 
-
-export {getWeatherRefs}
+export { getWeatherRefs };
