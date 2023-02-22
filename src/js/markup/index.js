@@ -248,7 +248,9 @@ function addWetter(elem) {
     // return massPageCards.push(лі погода) 
     
     return   `<li><div class="weather"><div class="weather__info"><span class="weather__deg"></span><div class="weather__geo"><span class="weather__value"></span>
-            <p class="weather__location"><span class="weather__city"></span></p></div></div><img class="weather__img" /><div class="weather__date">
+            <p class="weather__location"><svg class="icon-location" width="20" height="20">
+                  <use class="icon-location" href="/symbol-defs.a8b2e413.svg#icon-location"></use>
+                </svg><span class="weather__city"></span></p></div></div><img class="weather__img" /><div class="weather__date">
         <p class="weather__day"></p><p class="weather__year"></p></div><a href="https://sinoptik.ua/" class="weather__link" target="_blank" rel="noreferrer noopener">weather for week</a></div></li>` + createCards(elem)
     
 }

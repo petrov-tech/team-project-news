@@ -149,6 +149,7 @@ svg {
 
 
     &__location {
+        
         display: flex;
         align-items: center;
         padding: 8px;
@@ -171,6 +172,7 @@ svg {
             height: 42px;
             padding-right: 17px;
         }
+       
 
         svg {
             width: 18px;
@@ -234,7 +236,7 @@ svg {
     }
 
     &__link {
-
+        text-align: center;
         display: block;
         padding: 8px 14px;
         width: 151px;
@@ -264,7 +266,7 @@ svg {
             font-size: 20px;
             line-height: calc(23 / 20);
             margin-bottom: 26px;
-            text-align: center;
+            
             
         }
     }
