@@ -24,7 +24,7 @@ let selectedCategoryEl;
 let currentNumberCategories = 0;
 let outsideCategories = 0;
 let windowWidth = 0;
-let wetherPosition = 0;
+let weatherPosition = 0;
 
 getCategoryRender();
 
@@ -34,15 +34,15 @@ async function getCategoryRender() {
   //  ширина дисплею
   if (window.innerWidth < 768) {
     windowWidth = 4;
-    wetherPosition = -1;
+    weatherPosition = -1;
   }
   if (window.innerWidth > 768 && window.innerWidth < 1280) {
     windowWidth = 7;
-    wetherPosition = 0;
+    weatherPosition = 0;
   }
   if (window.innerWidth >= 1280) {
     windowWidth = 8;
-    wetherPosition = 1;
+    weatherPosition = 1;
   }
 
   // mobile
