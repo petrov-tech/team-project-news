@@ -22,7 +22,15 @@ body {
         }
 }
 
-
+.main_section {
+    padding-bottom: 60px ;
+    @media screen and (min-width: $tablet) {    
+        padding-bottom: 100px;    
+    }
+    @media screen and (min-width: $desktop) {    
+        padding-bottom: 150px;
+    }
+}
 
 
 
