@@ -1,1 +1,0 @@
-{"mappings":"gfAAAA,EAAA,S","sources":["src/read.js"],"sourcesContent":["import './js/mobile_menu/index';\nimport './js/dark_mode/index';\n"],"names":["parcelRequire"],"version":3,"file":"read.7bebaa08.js.map"}
