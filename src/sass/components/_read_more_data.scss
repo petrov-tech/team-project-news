@@ -14,7 +14,7 @@
 }
 
 .date-list {
-  border-bottom: 1px solid #929292;
+
   text-align: start;
   width: 100%;
   margin-right: 8px;
@@ -24,18 +24,26 @@
   }
 }
 
-.date-list-search {
-  display: flex;
-  gap: 30px;
-  flex-wrap: wrap;
-  padding-top: 40px;
+.data-list__btn {
+
+ 
   padding-bottom: 40px;
+  width: 100%;
 }
 
-//   шрифт цифр
+.date-list-search {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #929292;
+
+  margin-bottom: 12px;
+ 
+}
+
+// //   шрифт цифр
 
 .date-list__data {
-  display: flex;
+
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
@@ -43,13 +51,15 @@
   line-height: calc(24 / 14);
   letter-spacing: 0.02em;
   color: #111312;
+  margin-right: 8px;
 }
 
-//   свг
+// //   свг
 
 .date-list__icon {
-  position: absolute;
-  &.turn {
+  color: #111321;
+  
+}
+.turn {
     transform: rotate(180deg);
   }
-}

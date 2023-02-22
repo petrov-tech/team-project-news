@@ -8,6 +8,7 @@ import { creatCards } from '../markup/index.js';
 const listCard = document.querySelector('.list__card');
 const dataList = document.querySelector('.date-list__data');
 const dataIcon = document.querySelector('.date-list__icon');
+
 let dataListCard = ""
 
 
@@ -107,6 +108,14 @@ function createCardsToRead() {
   dataListCard.insertAdjacentHTML("beforeend", listDisv)  
 }
 
+// dataIcon.addEventListener('click', isHidden);
+// function isHidden(e){
+  // console.log("e");
+  // if(e.classList.add('turn')) {
+   // reading.classList.add('is-hidden')
+  // }
+
+//}
 
 function markup(mass,data) {
   
@@ -114,13 +123,17 @@ function markup(mass,data) {
   return `<ul class="date-list">
     <li class="date-list__data">
         <button class="data-list__btn">
-        <div class="date-list-search is-hidden">
-            <svg class="date-list__icon turn" aria-hidden="true" width="15" height="9">
-            <use href="./images/symbol-defs.svg#icon-up"></use></svg>
-            <p>${data}</p>            
-        </div>
+        <div class="date-list-search ">
+            <p class="date-list__data">${data}</p> 
+            <svg class="date-list__icon turn" aria-hidden="true" width="15" height="9" viewBox="0 0 32 32">
+           
+            <path d="M3.76 25.143l-3.76-3.479 16-14.806 16 14.806-3.76 3.479-12.24-11.302-12.24 11.302z"></path>
+            </svg>
+          </div>             
         </button>
+        <ul class="list__card is-hidden">
         ${loadCardsHtml(mass)}
+        </ul>
     </li>
 </ul>`
 }
