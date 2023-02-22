@@ -40,11 +40,11 @@ async function inSearchNews(e) {
         refs.newsList.innerHTML = '';
         // refs.pagination.classList.add('pagination-hidden');
         // //  refs.weather.classList.add('weather-hidden');
-        refs.errorCtr.classList.remove('not-found--hidden');
+        refs.errorCtr.classList.remove('is-hidden');
     }
 
     if (search_query === '') {
-        refs.errorCtr.classList.remove('not-found--hidden');
+        refs.errorCtr.classList.remove('is-hidden');
     }
        
 
@@ -59,7 +59,7 @@ async function inSearchNews(e) {
     scrollToTop();
     newSearchToNextPage();
 
-    // refs.errorCtr.classList.add('not-found--hidden');
+    // refs.errorCtr.classList.add('is-hidden');
     /* потрібно добавити до секції Pagination в css стилі клас is-hidden */
     refs.paginationCtr.classList.add('is-hidden');
     
