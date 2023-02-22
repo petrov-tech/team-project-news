@@ -37,61 +37,52 @@ function removeFromRead(e) {
     return;
   }
   
-  const idCard = e.target.dataset.id; 
+  const idCard = e.target.dataset.id;
+  reading.map((est, i) => {
+    console.log(est.idCards,Number(idCard));
+    if (est.idCards === Number(idCard)) {
+      
+      reading.splice(i, 1);
+      return
+    }
+  })     
   
   massCards(idCard)
   e.target.offsetParent.classList.add("cardsRead")
 }
 function massCards (e){
   massPageCards.map(massPageCard => {
-
      if (massPageCard.idCards === Number(e)) {       
-       reading.push(massPageCard)
-       
-       
+       reading.push(massPageCard)  
      }     
-  })
-  
-  saveDate()
-  
+  })  
+  saveDate()  
   localStorage.setItem(STORAGE_KEY, JSON.stringify(dataMass));
     
 }
 
 function saveDate() {
-  const date = new Date()
-  
+  const date = new Date()  
   const time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
-  
-
   dataMass[time] = reading
-
   } 
-
-
-
-
 
 
 function isStorageEmpty() {
   
   dataMass = loadLockalStorage()
-
+  if (!dataMass ) {dataMass ={}}
     const date = new Date()
     const time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
    
   const massKeys = Object.keys(dataMass)
 
-    massKeys.map(e => {
-    
-      
+    massKeys.map(e => {   
     if (e === time) {    
       const mass = dataMass[e]
       mass.map(e => 
         reading.push(e)
       )
-        
-
     } 
     })
 
@@ -109,14 +100,11 @@ function createCardsToRead() {
   let listDisv = ""
   const massKeys = Object.keys(dataMass)
   dataMass
-  massKeys.map(e => {
-    
+  massKeys.map(e => {    
     listDisv += markup(dataMass[e],e)
-  })
-  
+  })  
   dataListCard.innerHTML = ""  
-    dataListCard.insertAdjacentHTML("beforeend", listDisv)
-  
+  dataListCard.insertAdjacentHTML("beforeend", listDisv)  
 }
 
 
