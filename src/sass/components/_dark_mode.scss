@@ -1,9 +1,9 @@
 body{
-    background-color: #F4F4F4;
+    background-color: var(--bg-color);
 }
 .dark__theme {
     background-color: #2e2e2e;
-    color: #f4f4f4;
+    color: var(--bg-color);
 }
 
 .dark__theme .header{
@@ -12,7 +12,11 @@ body{
 }
 
 .dark__theme .header a {
-color: #f4f4f4;
+color: var(--bg-color);
+}
+
+.dark__theme .not-found__text{
+    color: var(--bg-color);
 }
 
 .dark__theme .burger_menu-conteiner{
@@ -20,19 +24,21 @@ color: #f4f4f4;
 }
 
 .dark__theme .search-form{
-    border-color: #F4F4F4;
+    border-color: var(--bg-color);
 }
 
 .dark__theme 
 .navigation__logo, 
-.not-found__text,
 .burger_menu-text,
+.item-news__description,
+.date-list__data,
+.search-form-input
 {
-color: #f4f4f4;
+color: var(--bg-color);
 }
 
 .dark__theme .toogle-light{
-    color: #F4F4F4;
+    color: var(--bg-color);
     opacity: 0.4;
 }
 
@@ -40,36 +46,37 @@ color: #f4f4f4;
     color: #4440F7;
 }
 
-.dark__theme .header svg{
- fill: #F4F4F4;   
+.dark__theme .header svg,
+.date-list__icon{
+ fill: var(--bg-color);   
 }
 
 .sun {
-    stroke: #4b48db;
+    stroke: var(--switcher-accent-day);
 }
 
 .dark__theme  .sun {
-    stroke: #5f6775;
+    stroke: var(--switcher-gray-moon);
 }
 
 .moon {
-    stroke: #5f6775;
+    stroke: var(--switcher-gray-moon);
 }
 
 .dark__theme .moon{
-    stroke: #4b48db;
+    stroke: var(--switcher-accent-day);
 }
 
 .dark__theme .calendar_input{
 background-color: rgba(0, 0, 0, 0);
-    border: 1px solid #F4F4F4;
+    border: 1px solid var(--bg-color);
 }
 
 .dark__theme h2{
-    color: #f4f4f4;
+    color: var(--bg-color);
 }
 .dark__theme .pagination-button{
-    background-color: #F4F4F4;
+    background-color: var(--bg-color);
 }
 
 .dark__theme .pagination-button.active {
