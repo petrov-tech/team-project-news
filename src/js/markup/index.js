@@ -2,6 +2,7 @@
 import { generatePaginationButtons, newSearchToNextPage } from "../pagination/index"
 import { getPopularArticle } from "../api";
 import { getWeatherRefs } from "../weather";
+import { loadLockalStorage } from "../read_more";
   
 const news = document.getElementsByClassName("news")[0]
 const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
@@ -130,8 +131,8 @@ function getHtmlMarkup(massPageCards) {
     }).join("") + "</ul>"
 }
 function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, title, created_date, url,section_name,section,uri,media,published_date,id }) {
-    const toRead = false
-    const toFavorite = false
+    let toRead = false
+    let toFavorite = false
     let imgUrl = ""
     let titleFormt = ""
     let dataFormt = ""
@@ -184,8 +185,22 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
     const paragraf = getFormatParagraf(abstract)
 
     // тут якщо читали або фаворіт по ід провіряти
+   toRead = LockalStorageRead(idCards)
 
   return  ({idCards,sectionFormt,titleFormt,paragraf,dataFormt,urlFormt,imgUrl,toRead ,toFavorite })
+}
+
+function LockalStorageRead(id) {
+    const dataObj = loadLockalStorage()
+    const dataMass = Object.values(dataObj)
+    
+    for (let i = 0; i < dataMass.length; i++) {
+        for (let j = 0; j < dataMass[i].length; j++) {
+            if (dataMass[i][j].idCards === id) {
+            return true
+            }  
+        }      
+}
 }
 
 function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataFormt, idCards,toRead = false,toFavorite = false }) {
