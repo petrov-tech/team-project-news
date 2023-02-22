@@ -1,12 +1,56 @@
-.light__theme {
-    background-color: var(--bg-color);
-    color: #111321;
+body{
+    background-color: #F4F4F4;
 }
-
 .dark__theme {
     background-color: #2e2e2e;
-    color: var(--bg-color)
+    color: #f4f4f4;
 }
 
+.dark__theme .header{
+        background-color: #2e2e2e;
+        border-bottom: 1px solid #f4f4f441;
+}
 
+.dark__theme .header a {
+color: #f4f4f4;
+}
+
+.dark__theme .burger_menu-conteiner{
+    background-color: #2e2e2e;
+}
+
+.dark__theme .search-form{
+    border-color: #F4F4F4;
+}
+
+.dark__theme 
+.navigation__logo, 
+.not-found__text,
+.burger_menu-text{
+color: #f4f4f4;
+}
+
+.dark__theme .header svg{
+ fill: #F4F4F4;   
+}
+
+.dark__theme .moon svg{
+    fill: #4b48db;
+}
+
+.dark__theme .calendar_input{
+background-color: rgba(0, 0, 0, 0);
+    border: 1px solid #F4F4F4;
+}
+
+.dark__theme h2{
+    color: #f4f4f4;
+}
+.dark__theme .pagination-button{
+    background-color: #F4F4F4;
+}
+
+.dark__theme .pagination-button.active {
+    background-color: var(--accent-color);
+}
 
