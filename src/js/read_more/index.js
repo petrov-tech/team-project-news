@@ -112,7 +112,7 @@ dataIcon.addEventListener('click', isHidden);
 function isHidden(e){
   console.log("e");
   if(e.classList.add('turn')) {
-  reading.classList.add('is-hidden')
+  // reading.classList.add('is-hidden')
   }
 
 }
