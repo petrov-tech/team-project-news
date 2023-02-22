@@ -2,124 +2,108 @@ import { massPageCards } from '../markup/index.js';
 import { loadCardsHtml } from '../markup/index.js';
 import { creatCards } from '../markup/index.js';
 
-
 //=== через data-id="${idCards}" порівняти з let massPageCards = []
 
 const listCard = document.querySelector('.list__card');
 const dataList = document.querySelector('.date-list__data');
 const dataIcon = document.querySelector('.date-list__icon');
 
-let dataListCard = ""
-
-
+let dataListCard = '';
 
 const STORAGE_KEY = 'read news';
-let dataMass = {}
-const reading = []
+let dataMass = {};
+const reading = [];
 
 const currentPage = location.pathname.match(/read.html/);
 if (!currentPage) {
-  const newContainer = document.querySelector('.news')
+  const newContainer = document.querySelector('.news');
   newContainer.addEventListener('click', removeFromRead);
 }
 
 if (currentPage) {
-   dataListCard = document.querySelector('.container__read');
+  dataListCard = document.querySelector('.container__read');
 }
 
-
-
 isStorageEmpty();
-
-
 
 function removeFromRead(e) {
   if (e.target.nodeName !== 'A') {
     return;
   }
-  
+
   const idCard = e.target.dataset.id;
   reading.map((est, i) => {
-    console.log(est.idCards,Number(idCard));
+    console.log(est.idCards, Number(idCard));
     if (est.idCards === Number(idCard)) {
-      
       reading.splice(i, 1);
-      return
+      return;
     }
-  })     
-  
-  massCards(idCard)
-  e.target.offsetParent.classList.add("cardsRead")
+  });
+
+  massCards(idCard);
+  e.target.offsetParent.classList.add('cardsRead');
 }
-function massCards (e){
+function massCards(e) {
   massPageCards.map(massPageCard => {
-     if (massPageCard.idCards === Number(e)) {       
-       reading.push(massPageCard)  
-     }     
-  })  
-  saveDate()  
+    if (massPageCard.idCards === Number(e)) {
+      reading.push(massPageCard);
+    }
+  });
+  saveDate();
   localStorage.setItem(STORAGE_KEY, JSON.stringify(dataMass));
-    
 }
 
 function saveDate() {
-  const date = new Date()  
-  const time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
-  dataMass[time] = reading
-  } 
-
+  const date = new Date();
+  const time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+  dataMass[time] = reading;
+}
 
 function isStorageEmpty() {
-  
-  dataMass = loadLockalStorage()
-  if (!dataMass ) {dataMass ={}}
-    const date = new Date()
-    const time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
-   
-  const massKeys = Object.keys(dataMass)
+  dataMass = loadLockalStorage();
+  if (!dataMass) {
+    dataMass = {};
+  }
+  const date = new Date();
+  const time = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
 
-    massKeys.map(e => {   
-    if (e === time) {    
-      const mass = dataMass[e]
-      mass.map(e => 
-        reading.push(e)
-      )
-    } 
-    })
+  const massKeys = Object.keys(dataMass);
 
-  
+  massKeys.map(e => {
+    if (e === time) {
+      const mass = dataMass[e];
+      mass.map(e => reading.push(e));
+    }
+  });
 }
 function loadLockalStorage() {
   if (JSON.parse(localStorage.getItem('read news')) === null) {
     return;
-    }
+  }
   return JSON.parse(localStorage.getItem('read news'));
 }
 
-
 function createCardsToRead() {
-  let listDisv = ""
-  const massKeys = Object.keys(dataMass)
-  dataMass
-  massKeys.map(e => {    
-    listDisv += markup(dataMass[e],e)
-  })  
-  dataListCard.innerHTML = ""  
-  dataListCard.insertAdjacentHTML("beforeend", listDisv)  
+  let listDisv = '';
+  const massKeys = Object.keys(dataMass);
+  dataMass;
+  massKeys.map(e => {
+    listDisv += markup(dataMass[e], e);
+  });
+  dataListCard.innerHTML = '';
+  dataListCard.insertAdjacentHTML('beforeend', listDisv);
 }
 
 // dataIcon.addEventListener('click', isHidden);
 // function isHidden(e){
-  // console.log("e");
-  // if(e.classList.add('turn')) {
-   // reading.classList.add('is-hidden')
-  // }
+// console.log("e");
+// if(e.classList.add('turn')) {
+// reading.classList.add('is-hidden')
+// }
 
 //}
 
-function markup(mass,data) {
-  
-
+function markup(mass, data) {
   return `<ul class="date-list">
     <li class="date-list__data">
         <button class="data-list__btn">
@@ -135,7 +119,7 @@ function markup(mass,data) {
         ${loadCardsHtml(mass)}
         </ul>
     </li>
-</ul>`
+</ul>`;
 }
 
-export {createCardsToRead,loadLockalStorage}
+export { createCardsToRead, loadLockalStorage };

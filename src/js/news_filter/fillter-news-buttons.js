@@ -1,5 +1,5 @@
 import { getCategoryList } from '../api/index';
-import debounce from 'lodash.debounce';
+// import debounce from 'lodash.debounce';
 import { renderByCategory } from './render-by-category';
 
 const refs = {
@@ -97,7 +97,7 @@ async function getCategoryRender() {
             changeButtonName();
           }
         });
-      refs.listNews.addEventListener('click', onClickListNews);
+      // refs.listNews.addEventListener('click', onClickListNews);
     });
   }
   // desktop
@@ -127,7 +127,7 @@ async function getCategoryRender() {
             changeButtonName();
           }
         });
-      refs.listNews.addEventListener('click', onClickListNews);
+      // refs.listNews.addEventListener('click', onClickListNews);
     });
   }
 }
@@ -151,7 +151,6 @@ function onClickCategory(evt) {
   document
     .querySelector('.page-container-cat')
     .classList.remove('pagination-cat-hidden');
- 
 }
 function renderMarkupCategory(
   categoryList,
@@ -191,8 +190,6 @@ function createMarkupOtherCategory(category, listEl) {
   itemEl.append(buttonEl);
 
   listEl.append(itemEl);
-
-  
 }
 
 function onClickOther(evt) {
