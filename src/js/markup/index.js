@@ -144,7 +144,8 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
         if (headline) {
             // масив за пошуком слова
             titleFormt = headline.main;
-            imgUrl = getFormatImg(multimedia[0].url);
+            if (multimedia[0]) {imgUrl = getFormatImg(multimedia[0].url);}
+            
             dataFormt = pub_date;
             urlFormt = web_url;
             sectionFormt = section_name;
@@ -152,8 +153,8 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
         }
         else {
             // масив за пошуком категорією
-            titleFormt = title;
-            imgUrl = multimedia[multimedia.length - 2].url;
+            titleFormt = title;            
+            imgUrl = multimedia[0].url;
             dataFormt = created_date;
             urlFormt = url;
             sectionFormt = section;
