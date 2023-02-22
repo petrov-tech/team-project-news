@@ -1,34 +1,59 @@
 import { massPageCards } from '../markup/index';
 import { createCardsToHtml } from '../markup/index';
 
-const container = document.querySelector('.news');
+
 // const containerCard = querySelector('.container-card');
 // const toFavouriteBtn = querySelector('.item-news__add-to-favorite');
 
-let dataMass = {};
+
 const data = [];
+loadLockalStorage();
+
 
 // createCardsToHtml(data);
-container.addEventListener('click', addToFavorite);
+
+
+
+    const container = document.querySelector('section');
+    container.addEventListener('click', addToFavorite);
+
+
+
+
 
 function addToFavorite(e) {
-  console.log(e);
-  if (e.target.nodeName !== 'BUTTON') {
-    return;
-  }
-  const curentBtn = e.target;
-  curentBtn.classList.replace(
-    '.item-news__add-to-favorite-btn',
-    '.item-news__add-to-favorite-btn-remove'
-  );
-  const favoriteCard = e.target.dataset.id;
-  massPageCards.map(massPageCard => {
-    if (massPageCard.idCards === Number(favoriteCard)) {
-      data.push(massPageCard);
+    
+    if (e.target.nodeName === 'BUTTON') {
+         let toggal = true     
+        
+        
+
+
+        const favoriteCard = e.target.dataset.id;
+        
+        data.map((elem,i) => {
+            if (elem.idCards === Number(favoriteCard)) {
+                e.target.classList.remove("cardsFavorite")
+                data.splice(i, 1);
+                toggal = false
+                localStorage.setItem('data', JSON.stringify(data));
+                return
+            } 
+            
+        })
+        if (toggal) {
+        massPageCards.map(massPageCard => {
+                if (massPageCard.idCards === Number(favoriteCard)) {
+                    e.target.classList.add("cardsFavorite")
+                    data.push(massPageCard);
+                    return
+                }
+                localStorage.setItem('data', JSON.stringify(data));
+                });        
+        }}      
     }
-    localStorage.setItem('data', JSON.stringify(dataMass));
-  });
-}
+    
+
 
 // container.addEventListener('click', removeFromFavorite);
 
@@ -52,11 +77,21 @@ function addToFavorite(e) {
 //   });
 // }
 
-function loadLockalStorage() {
+function loadLockalStorage() {   
+    const mass = dataLockalStorage()
+    if (mass) loadLockalToMass(mass)
+}
+function dataLockalStorage() {
   if (JSON.parse(localStorage.getItem('data')) === null) {
     return;
-  }
-  return JSON.parse(localStorage.getItem('data'));
+    }    
+    return JSON.parse(localStorage.getItem('data'))    
+}
+function loadLockalToMass(elem) {
+    elem.map(e => {
+        data.push(e)
+    })
 }
 
-loadLockalStorage();
+
+export {dataLockalStorage}
