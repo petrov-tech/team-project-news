@@ -266,10 +266,14 @@ function addWetter(elem) {
     // return massPageCards.push(лі погода) 
     
     return   `<li><div class="weather"><div class="weather__info"><span class="weather__deg"></span><div class="weather__geo"><span class="weather__value"></span>
-            <p class="weather__location"><svg class="icon-location" width="20" height="20">
-                  <use class="icon-location" href="/symbol-defs.a8b2e413.svg#icon-location"></use>
-                </svg><span class="weather__city"></span></p></div></div><img class="weather__img" /><div class="weather__date">
-        <p class="weather__day"></p><p class="weather__year"></p></div><a href="https://sinoptik.ua/" class="weather__link" target="_blank" rel="noreferrer noopener">weather for week</a></div></li>` + createCards(elem)
+            <p class="weather__location"><svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 width="800px" height="800px" viewBox="0 0 395.71 395.71"
+	 xml:space="preserve">
+<g>
+<path d="M197.849,0C122.131,0,60.531,61.609,60.531,137.329c0,72.887,124.591,243.177,129.896,250.388l4.951,6.738
+c0.579,0.792,1.501,1.255,2.471,1.255c0.985,0,1.901-0.463,2.486-1.255l4.948-6.738c5.308-7.211,129.896-177.501,129.896-250.388
+C335.179,61.609,273.569,0,197.849,0z M197.849,88.138c27.13,0,49.191,22.062,49.191,49.191c0,27.115-22.062,49.191-49.191,49.191c-27.114,0-49.191-22.076-49.191-49.191C148.658,110.2,170.734,88.138,197.849,88.138z"/></g></svg><span class="weather__city"></span></p></div></div><img class="weather__img" /><div class="weather__date">
+<p class="weather__day"></p><p class="weather__year"></p></div><a href="https://sinoptik.ua/" class="weather__link" target="_blank" rel="noreferrer noopener">weather for week</a></div></li>` + createCards(elem)
     
 }
 function getFormatImg(e) {
