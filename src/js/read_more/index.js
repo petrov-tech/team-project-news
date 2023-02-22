@@ -108,14 +108,14 @@ function createCardsToRead() {
   dataListCard.insertAdjacentHTML("beforeend", listDisv)  
 }
 
-dataIcon.addEventListener('click', isHidden);
-function isHidden(e){
-  console.log("e");
-  if(e.classList.add('turn')) {
-  // reading.classList.add('is-hidden')
-  }
+// dataIcon.addEventListener('click', isHidden);
+// function isHidden(e){
+  // console.log("e");
+  // if(e.classList.add('turn')) {
+   // reading.classList.add('is-hidden')
+  // }
 
-}
+//}
 
 function markup(mass,data) {
   
