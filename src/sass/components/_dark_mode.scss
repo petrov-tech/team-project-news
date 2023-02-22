@@ -26,16 +26,38 @@ color: #f4f4f4;
 .dark__theme 
 .navigation__logo, 
 .not-found__text,
-.burger_menu-text{
+.burger_menu-text,
+{
 color: #f4f4f4;
+}
+
+.dark__theme .toogle-light{
+    color: #F4F4F4;
+    opacity: 0.4;
+}
+
+.dark__theme .toogle-dark {
+    color: #4440F7;
 }
 
 .dark__theme .header svg{
  fill: #F4F4F4;   
 }
 
-.dark__theme .moon svg{
-    fill: #4b48db;
+.sun {
+    stroke: #4b48db;
+}
+
+.dark__theme  .sun {
+    stroke: #5f6775;
+}
+
+.moon {
+    stroke: #5f6775;
+}
+
+.dark__theme .moon{
+    stroke: #4b48db;
 }
 
 .dark__theme .calendar_input{
