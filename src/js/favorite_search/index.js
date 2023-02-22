@@ -37,6 +37,7 @@ function addToFavorite(e) {
                 data.splice(i, 1);
                 toggal = false
                 localStorage.setItem('data', JSON.stringify(data));
+                e.target.parentNode.parentNode.parentNode.remove();
                 return
             } 
             
