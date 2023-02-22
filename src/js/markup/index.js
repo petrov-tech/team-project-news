@@ -192,7 +192,8 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
 
 function LockalStorageRead(id) {
     const dataObj = loadLockalStorage()
-    const dataMass = Object.values(dataObj)
+    if (dataObj) {
+        const dataMass = Object.values(dataObj)
     
     for (let i = 0; i < dataMass.length; i++) {
         for (let j = 0; j < dataMass[i].length; j++) {
@@ -200,6 +201,8 @@ function LockalStorageRead(id) {
             return true
             }  
         }      
+    }
+    
 }
 }
 
