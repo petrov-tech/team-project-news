@@ -1,6 +1,5 @@
 
 import { generatePaginationButtons, newSearchToNextPage } from "../pagination/index"
-import { getPopularArticle } from "../api";
 import { getWeatherRefs } from "../weather";
 import { loadLockalStorage } from "../read_more";
 import { dataLockalStorage } from "../favorite_search";
@@ -16,7 +15,7 @@ let massPageCards = []
 let currectPage = 2
 let lastCuttectPage = 0
 let searchBloom = false
-
+let localStorageRead = []
 
 window.addEventListener('resize', function () {
     const lastOriemtir = orientation
@@ -45,6 +44,8 @@ function searchCards(mass,page = 1) {
 
 
 function createCardtToNews(mass = allCardsOnPage, page = 1) { 
+    localStorageRead = dataLockalStorage() 
+    console.log(localStorageRead);
     addToMassCards(mass) 
     const startMass = orientationFromBody(page)    
      getMarkup(massPageCards, startMass)  
@@ -74,7 +75,7 @@ function addToMassCards(elem) {
 function loadCardsHtml(mass) {
     return "<ul class='list-news'>" + mass.map((elem) => {
         // пошук на фаворіт
-        toFavorite = LockalStorageFavorite(elem.idCards)
+        elem.toFavorite = LockalStorageFavorite(elem.idCards)
 
         return createCards(elem)
      }).join("") + "</ul>"
@@ -187,8 +188,9 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
     const paragraf = getFormatParagraf(abstract)
 
     // тут якщо читали або фаворіт по ід провіряти
-   toRead = LockalStorageRead(idCards)
     toFavorite = LockalStorageFavorite(idCards)
+   toRead = LockalStorageRead(idCards)
+    
     
   return  ({idCards,sectionFormt,titleFormt,paragraf,dataFormt,urlFormt,imgUrl,toRead ,toFavorite })
 }
@@ -196,13 +198,13 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
 function LockalStorageFavorite(id) {
      
     let toggal = false
-    let dataMass =  dataLockalStorage()  
-    
+    let dataMass = localStorageRead  
+    console.log(dataMass);
     if (dataMass === undefined) dataMass = []; 
     
     dataMass.map(e => {   
         
-        if (e.idCards === id) {toggal =  true; } 
+        if (e.idCards === id) {toggal =  true; console.log("sdw"); } 
     })
     
     return toggal
@@ -228,7 +230,10 @@ function LockalStorageRead(id) {
 
 function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataFormt, idCards,toRead = false,toFavorite = false }) {
     if (toRead) {toRead = "cardsRead"} else toRead = ""
-    if (toFavorite) {toFavorite = "cardsFavorite"} else toFavorite = ""    
+    if (toFavorite) { toFavorite = "cardsFavorite" } else toFavorite = ""
+    const currentPage = location.pathname.match(/favorite.html/);
+    if (currentPage) { toFavorite = "cardsFavorite" }
+
     return `
     <li>
     <article class="item-news__article ${toRead}" data-id="${idCards} ">    
