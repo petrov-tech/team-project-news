@@ -1,9 +1,7 @@
 const currentPage = window.location.pathname;
-console.log(currentPage);
 const navLink = document.querySelectorAll('.navigation_link').forEach(link => {
   if (link.href.includes(`${currentPage}`)) {
     link.classList.add('current');
-    console.log(link);
   }
 });
 
