@@ -1,8 +1,12 @@
-const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
+
 import { createCardtToNews, searchBloom, allCardsOnPage, addToMassCards } from "../markup";
 import { getSearchArticle } from "../api";
+const currentPage = location.pathname.match(/read.html/);
+if (!currentPage) {
+  const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
+  paginationDiv.addEventListener("click",nextPage)
+}
 
-paginationDiv.addEventListener("click",nextPage)
 let lastPages = 3
 let pageToBackend = 2
 
