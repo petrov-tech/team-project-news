@@ -1,43 +1,49 @@
-body{
+body {
     background-color: var(--bg-color);
 }
+
 .dark__theme {
     background-color: #2e2e2e;
     color: var(--bg-color);
 }
 
-.dark__theme .header{
-        background-color: #2e2e2e;
-        border-bottom: 1px solid #f4f4f441;
+.dark__theme .header {
+    background-color: #2e2e2e;
+    border-bottom: 1px solid #f4f4f441;
 }
 
 .dark__theme .header a {
-color: var(--bg-color);
-}
-
-.dark__theme .not-found__text{
     color: var(--bg-color);
 }
 
-.dark__theme .burger_menu-conteiner{
+.dark__theme .not-found__text {
+    color: var(--bg-color);
+}
+
+.dark__theme .burger_menu-conteiner {
     background-color: #2e2e2e;
 }
 
-.dark__theme .search-form{
+.dark__theme .search-form {
     border-color: var(--bg-color);
 }
 
-.dark__theme 
-.navigation__logo, 
-.burger_menu-text,
-.item-news__description,
-.date-list__data,
-.search-form-input
-{
-color: var(--bg-color);
+
+.dark__theme .search-form-input {
+    color: var(--bg-color);
 }
 
-.dark__theme .toogle-light{
+.dark__theme .navigation__logo,
+.item-news__description {
+    color: var(--bg-color);
+}
+
+.dark__theme .date-list__data {
+    color: var(--bg-color);
+}
+
+
+.dark__theme .toogle-light {
     color: var(--bg-color);
     opacity: 0.4;
 }
@@ -46,16 +52,19 @@ color: var(--bg-color);
     color: #4440F7;
 }
 
-.dark__theme .header svg,
-.date-list__icon{
- fill: var(--bg-color);   
+.dark__theme .header svg {
+    fill: var(--bg-color);
+}
+
+.dark__theme .date-list-search svg {
+    fill: var(--bg-color);
 }
 
 .sun {
     stroke: var(--switcher-accent-day);
 }
 
-.dark__theme  .sun {
+.dark__theme .sun {
     stroke: var(--switcher-gray-moon);
 }
 
@@ -63,23 +72,23 @@ color: var(--bg-color);
     stroke: var(--switcher-gray-moon);
 }
 
-.dark__theme .moon{
+.dark__theme .moon {
     stroke: var(--switcher-accent-day);
 }
 
-.dark__theme .calendar_input{
-background-color: rgba(0, 0, 0, 0);
+.dark__theme .calendar_input {
+    background-color: rgba(0, 0, 0, 0);
     border: 1px solid var(--bg-color);
 }
 
-.dark__theme h2{
+.dark__theme h2 {
     color: var(--bg-color);
 }
-.dark__theme .pagination-button{
+
+.dark__theme .pagination-button {
     background-color: var(--bg-color);
 }
 
 .dark__theme .pagination-button.active {
     background-color: var(--accent-color);
 }
-
