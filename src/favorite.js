@@ -7,9 +7,9 @@ const container = document.querySelector('.news');
 // const containerCard = querySelector('.container-card');
 // const toFavouriteBtn = querySelector('.item-news__add-to-favorite');
 
-let data = [];
+let dataMass = {}
+const data = [];
 
-localStorage.setItem('data', JSON.stringify(data));
 createCardsToHtml(data);
 container.addEventListener('click', addToFavorite);
 
@@ -23,11 +23,14 @@ function addToFavorite(e) {
     '.item-news__add-to-favorite-btn-remove'
   );
   const favoriteCard = e.target.dataset.id;
-  const cardId = massPageCards.map(massPageCard => massPageCard.idCards);
-  if ((cardId = favoriteCard)) {
-    data.push(cardId);
-  }
-}
+  massPageCards.map(massPageCard => {
+    
+    if (massPageCard.idCards === Number(favoriteCard)) {
+      data.push(massPageCard);      
+    };
+    localStorage.setItem('data', JSON.stringify(dataMass));
+  });
+};
 
 container.addEventListener('click', removeFromFavorite);
 function removeFromFavorite() {
@@ -39,24 +42,22 @@ function removeFromFavorite() {
     '.item-news__add-to-favorite-btn-remove',
     '.item-news__add-to-favorite-btn'
   );
+
   const favoriteCard = e.target.dataset.id;
-  const cardId = data.map(data => data.idCards);
-  if ((cardId = favoriteCard)) {
-    data.splice(favoriteCard, 1);
-  }
-}
+  data.map((est, i) => {
+    console.log(est.idCards, Number(favoriteCard));
+    if (est.idCards === Number(favoriteCard)) {
+      data.splice(i, 1);
+      return
+    };
+  });
+};
 
-navList.addEventListener('click', addCurentStylePage);
-
-function addCurentStylePage() {
-  if (e.target.nodeName !== 'A') {
+function loadLockalStorage() {
+  if (JSON.parse(localStorage.getItem('data')) === null) {
     return;
-  }
-  const favoriteNav = e.target;
-  const currentActiveLink = document.querySelector('.navigation__link-curent');
-  if (currentActiveLink) {
-    currentActiveLink.classList.remove('.navigation__link-curent');
-  }
-  favoriteNav.classList.add(navigation__link - curent);
-}
-addCurentStylePage();
+  };
+  return JSON.parse(localStorage.getItem('data'));
+};
+
+loadLockalStorage();
