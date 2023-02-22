@@ -3,6 +3,7 @@ import { generatePaginationButtons, newSearchToNextPage } from "../pagination/in
 import { getPopularArticle } from "../api";
 import { getWeatherRefs } from "../weather";
 import { loadLockalStorage } from "../read_more";
+import { dataLockalStorage } from "../favorite_search";
   
 const news = document.getElementsByClassName("news")[0]
 const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
@@ -73,7 +74,7 @@ function addToMassCards(elem) {
 function loadCardsHtml(mass) {
     return "<ul class='list-news'>" + mass.map((elem) => {
         // пошук на фаворіт
-
+        toFavorite = LockalStorageFavorite(elem.idCards)
 
         return createCards(elem)
      }).join("") + "</ul>"
@@ -187,9 +188,27 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
 
     // тут якщо читали або фаворіт по ід провіряти
    toRead = LockalStorageRead(idCards)
-
+    toFavorite = LockalStorageFavorite(idCards)
+    
   return  ({idCards,sectionFormt,titleFormt,paragraf,dataFormt,urlFormt,imgUrl,toRead ,toFavorite })
 }
+
+function LockalStorageFavorite(id) {
+     
+    let toggal = false
+    let dataMass =  dataLockalStorage()  
+    
+    if (dataMass === undefined) dataMass = []; 
+    
+    dataMass.map(e => {   
+        
+        if (e.idCards === id) {toggal =  true; } 
+    })
+    
+    return toggal
+         
+}
+
 
 function LockalStorageRead(id) {
     const dataObj = loadLockalStorage()
