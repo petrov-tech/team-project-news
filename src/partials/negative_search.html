@@ -14,14 +14,21 @@
         ./images/not-found/tablet-not-found.png    1x,
         ./images/not-found/tablet-not-found@2x.png 2x
       "
-      media="(min-width:767.98px)"
+      media="(min-width:768px)"
+      type="image/png"
+    />
+    <source
+      srcset="
+        ./images/not-found/mobile-not-found.png,
+        ./images/not-found/mobile-not-found@2x.png 2x
+      "
+      media="(max-width:767.98px)"
       type="image/png"
     />
     <img
       class="not-found__img"
-      srcset="
-        ./images/not-found/mobile-not-found.png,
-        ./images/not-found/mobile-not-found@2x.png 2x
+      src="
+        ./images/not-found/mobile-not-found.png
       "
       alt="News hasn't been found"
     />
