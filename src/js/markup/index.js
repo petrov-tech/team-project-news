@@ -156,15 +156,17 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
         }
         else {
             // масив за пошуком категорією
-            titleFormt = title;            
-            imgUrl = multimedia[0].url;
+            
+            titleFormt = title;   
+            if (multimedia.length > 1) { imgUrl = multimedia[multimedia.length - 2].url; }
+            else {imgUrl = multimedia[0].url;}            
             dataFormt = created_date;
             urlFormt = url;
             sectionFormt = section;
             idCards = uri
         }
     }
-    else  {        
+    else if (media)  {        
 
         // масив за популярним
         titleFormt = title;        

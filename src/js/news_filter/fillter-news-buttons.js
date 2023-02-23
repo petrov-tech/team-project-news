@@ -1,7 +1,8 @@
 import { getCategoryList } from '../api/index';
 // import debounce from 'lodash.debounce';
 import { renderByCategory } from './render-by-category';
-
+import { getArticleByCategory } from '../api/index';
+import { createCardsToHtml, deleteCardsForNewSearch } from '../markup';
 const refs = {
   categoryContainerEl: document.querySelector('.filter-category__container'),
   otherList: document.querySelector('.filter-category__others-container'),
@@ -12,11 +13,6 @@ const refs = {
   listNews: document.querySelector('ul.list-news'),
 };
 
-refs.listButtons.addEventListener('click', () => {
-  document
-    .querySelector('.page-container-cat')
-    .classList.add('pagination-cat-hidden');
-});
 
 let selectedCategory = '';
 let selectedCategoryEl;
@@ -143,14 +139,14 @@ function onClickCategory(evt) {
   if (evt.target.textContent.length > 20) {
     return;
   }
-  selectedCategory = evt.target.textContent;
-  refs.loader.classList.remove('is-hidden');
-  renderByCategory(selectedCategory.toLowerCase());
-  refs.pagination.classList.add('pagination-search-hidden');
-  document.querySelector('.page-container').classList.add('pagination-hidden');
-  document
-    .querySelector('.page-container-cat')
-    .classList.remove('pagination-cat-hidden');
+  selectedCategory = evt.target.textContent.toLowerCase();
+ 
+  getArticleByCategory(selectedCategory).then(e => 
+  {
+    deleteCardsForNewSearch()
+    createCardsToHtml(e)
+    });
+ 
 }
 function renderMarkupCategory(
   categoryList,
