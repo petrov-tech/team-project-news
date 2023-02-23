@@ -15,9 +15,6 @@
 
 .date-list {
 
-  text-align: start;
-  width: 100%;
-  margin-right: 8px;
   margin-bottom: 40px;
   @media screen and(min-width: 1200px) {
     margin-bottom: 52px;
@@ -25,19 +22,18 @@
 }
 
 .data-list__btn {
-
- 
   padding-bottom: 40px;
+  text-align: left;
   width: 100%;
-}
-
-.date-list-search {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #929292;
-
-  margin-bottom: 12px;
- 
+  & > div {
+     pointer-events: none;
+     border-bottom: 1px solid #929292;
+  }
+  &.turn {
+    .date-list__icon {
+      transform: rotate(180deg);
+    }
+  }
 }
 
 // //   шрифт цифр
@@ -58,8 +54,5 @@
 
 .date-list__icon {
   color: #111321;
-  
+
 }
-.turn {
-    transform: rotate(180deg);
-  }
