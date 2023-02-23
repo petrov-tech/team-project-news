@@ -11,10 +11,8 @@ let lastPages = 3
 let pageToBackend = 2
 
 function generatePaginationButtons(currentPage, totalPages) {
-   
-  lastPages = Math.ceil(totalPages)
-  
-  
+   if (totalPages) lastPages = Math.ceil(totalPages) 
+
   const maxButtonsToShow = 4; // максимальна кількість кнопок для відображення
   
   // обчислюємо діапазон сторінок, який можна показати на даний момент
@@ -36,20 +34,21 @@ function generatePaginationButtons(currentPage, totalPages) {
   if (totalPages > 1 && -lastPages != -currentPage) {    
     paginationHtml += `<button class="pagination-button pagination-button-scrol" data-page="${-1*(-currentPage-1)}">Next &raquo;</button>`;
   }
-
-  
+ 
   return paginationHtml
-
 }
 function nextPage(e) {
   
-    if (e.target.nodeName !== "BUTTON") {    return;    } 
-  if (lastPages - e.target.dataset.page <= 2 && searchBloom) {
-    console.log("suda");
-    getSearchArticle("", pageToBackend).then((e) => { addToMassCards(e) })
-    pageToBackend += 1
-  }
-    createCardtToNews([], +(e.target.dataset.page))
+  if (e.target.nodeName !== "BUTTON") { return; }  
+  if (2 >= lastPages - e.target.dataset.page && searchBloom) {
+  
+    getSearchArticle("", pageToBackend).then((ent) => {
+      addToMassCards(ent)
+      createCardtToNews([],Number(e.target.dataset.page))
+    })
+    pageToBackend += 1    
+  } else
+    createCardtToNews([], Number(e.target.dataset.page))
     scrollToTop()
   }
 

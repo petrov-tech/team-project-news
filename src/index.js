@@ -13,6 +13,6 @@ import './js/news_filter/render-by-category';
 import './js/popular-render/index';
 import './js/read_more/index';
 import './js/read_more_date/index';
-import './js/read_search/index';
+
 import './js/refs/index';
 import './js/search/index';
