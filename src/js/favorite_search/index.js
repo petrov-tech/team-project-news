@@ -1,13 +1,13 @@
 import { massPageCards } from '../markup/index';
 import { createCardsToHtml } from '../markup/index';
-
+import { loadLockalStorage } from '../read_more';
 
 // const containerCard = querySelector('.container-card');
 // const toFavouriteBtn = querySelector('.item-news__add-to-favorite');
 
 
 const data = [];
-loadLockalStorage();
+loadLockalStorageFavorite();
 
 
 // createCardsToHtml(data);
@@ -23,7 +23,7 @@ loadLockalStorage();
 
 function addToFavorite(e) {
     
-    if (e.target.nodeName === 'BUTTON') {
+    if (e.target.classList.contains("item-news__add-to-favorite")) {
          let toggal = true     
         
         
@@ -32,7 +32,7 @@ function addToFavorite(e) {
         const favoriteCard = e.target.dataset.id;
         
         data.map((elem,i) => {
-            if (elem.idCards === Number(favoriteCard)) {
+            if (elem.idCards == favoriteCard) {
                 e.target.classList.remove("cardsFavorite")
                 data.splice(i, 1);
                 toggal = false
@@ -44,10 +44,29 @@ function addToFavorite(e) {
             } 
             
         })
-        if (toggal) {
-        massPageCards.map(massPageCard => {
-                if (massPageCard.idCards === Number(favoriteCard)) {
+        if (toggal) {            
+            const currentPage = location.pathname.match(/read.html/);            
+            
+            if (currentPage) {
+                const card = LockalStorageRead(favoriteCard);
+                
+                if (card === undefined) {
+                    return
+                } else {
+                    e.target.classList.add("cardsFavorite");
+                    card.toRead = true
+                    data.push(card);
+                    localStorage.setItem('data', JSON.stringify(data));
+                    return
+                }
+            } else
+
+
+            massPageCards.map(massPageCard => {               
+
+                 if (massPageCard.idCards == favoriteCard) {                    
                     e.target.classList.add("cardsFavorite")
+                    massPageCard.toFavorite = true
                     data.push(massPageCard);
                     return
                 }
@@ -57,7 +76,20 @@ function addToFavorite(e) {
     }
     
 
-
+function LockalStorageRead(id) {
+    const dataObj = loadLockalStorage()
+    
+    if (dataObj) {
+        const dataMass = Object.values(dataObj)        
+        for (let i = 0; i < dataMass.length; i++) {            
+            for (let j = 0; j < dataMass[i].length; j++) {
+                if (dataMass[i][j].idCards == id) {                    
+                    return dataMass[i][j]
+                } 
+            }
+        }
+    } 
+}
 // container.addEventListener('click', removeFromFavorite);
 
 // function removeFromFavorite() {
@@ -80,7 +112,7 @@ function addToFavorite(e) {
 //   });
 // }
 
-function loadLockalStorage() {   
+function loadLockalStorageFavorite() {   
     const mass = dataLockalStorage()
     if (mass) loadLockalToMass(mass)
 }
