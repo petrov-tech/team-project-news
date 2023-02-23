@@ -1,19 +1,17 @@
 /* Header */
 
 .header {
-  // position: fixed;  
-  // top: 0;  
-  // z-index: 100;  
+  // position: fixed;
+  // top: 0;
+  // z-index: 100;
   // width: 100%;
   // height: 100%;
   min-height: 81px;
   background: var(--bg-color);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  
 
   &__container {
     position: relative;
-
   }
 }
 
@@ -21,8 +19,7 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  // position: relative; 
- 
+  // position: relative;
 
   &__logo {
     padding: 24px 0px;
@@ -52,13 +49,13 @@
   }
 
   &__wrap {
-      display: flex;
-      align-items: center;
-    }
+    display: flex;
+    align-items: center;
+  }
 
   &_list {
     display: none;
-    
+
     @media screen and (min-width: $tablet) {
       display: flex;
       gap: 44px;
@@ -68,7 +65,7 @@
       gap: 69px;
     }
   }
-  
+
   &_link {
     display: none;
 
@@ -89,51 +86,46 @@
       font-size: 18px;
       line-height: 1.38;
     }
-
   }
-
 }
 
 .mobile-search-btn {
   margin-right: 17px;
- 
 }
 
 .navigation_link.current::after {
-    
+  @media screen and (min-width: $tablet) {
+    content: '';
+    position: absolute;
+    top: 78px;
+    left: -5px;
+    width: 120%;
+    height: 1px;
+    border-bottom: 1px solid #4440f7;
+  }
 
-    @media screen and (min-width: $tablet) {
-      content: "";
-      position: absolute;
-      top: 78px;
-      left: -5px;
-      width: 120%;
-      height: 1px;      
-      border-bottom: 1px solid #4440F7;
-    }
-
-    @media screen and (min-width: $desktop) {
-      top: 85px;
-      color: #4440F7;
-    }
+  @media screen and (min-width: $desktop) {
+    top: 85px;
+    color: #4440f7;
+  }
 }
 
 /* Search-form */
 
 .form-wrap {
-    display: none;
+  display: none;
 
-    @media screen and (min-width: $tablet) {
-      display: flex;
-      padding-top: 44px;
-      padding-bottom: 31px;
-      position: relative; 
-    }
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    padding-top: 44px;
+    padding-bottom: 31px;
+    position: relative;
+  }
 
-    @media screen and (min-width: $desktop) {
-      padding-top: 50px;
-      padding-bottom: 30px;
-    }
+  @media screen and (min-width: $desktop) {
+    padding-top: 50px;
+    padding-bottom: 30px;
+  }
 }
 
 .search-form {
@@ -143,13 +135,11 @@
     display: flex;
     align-items: center;
     border: 1px solid var(--text-color);
-    border-radius: 20px; 
-    position: relative; 
+    border-radius: 20px;
+    position: relative;
   }
-  
-  &-input {
-    
 
+  &-input {
     @media screen and (min-width: $tablet) {
       width: 148px;
       height: 27px;
@@ -161,31 +151,26 @@
       outline: none;
       font-size: 14px;
       font-weight: 600;
-      color: var(--text-color) 
+      color: var(--text-color);
     }
 
     @media screen and (min-width: $desktop) {
       width: 229px;
-      
+
       padding-left: 42px;
       font-size: 16px;
     }
 
-
     &::placeholder {
-      
-
       @media screen and (min-width: $tablet) {
         padding-left: 0;
         font-family: 'Poppins';
+        font-weight: 400;
         line-height: 1.71;
         letter-spacing: 0.02em;
         opacity: 0.4;
       }
-  
     }
-
-
   }
 }
 
@@ -198,20 +183,14 @@
     left: 14px;
     transform: translateY(-50%);
   }
-  
 }
 
 .search {
   display: block;
 }
 
-
-
-
 /* Toogle light/dark */
 .toogle-container {
-  
-  
   @media screen and (max-width: $pre_tablet) {
     display: none;
   }
@@ -229,10 +208,9 @@
   }
 
   @media screen and (min-width: $desktop) {
-    width: 148px;;
+    width: 148px;
     padding-bottom: 39px;
   }
-
 }
 
 .toogle {
@@ -241,12 +219,8 @@
   font-size: 18px;
   line-height: 1.33;
 
-   
-
   &-light {
     color: var(--switcher-accent-day);
-
-    
   }
 
   &-dark {
@@ -259,7 +233,6 @@
 }
 
 .toogle-wrap span {
-
   @media screen and (max-width: $pre_desktop) {
     display: none;
   }
@@ -267,8 +240,6 @@
   @media screen and (min-width: $desktop) {
     display: flex;
   }
-
-
 }
 
 .toogle-wrap svg {
@@ -282,8 +253,6 @@
 }
 
 .burger-toogle-container {
-  
-
   @media screen and (max-width: $pre_tablet) {
     display: flex;
     align-items: center;
@@ -291,9 +260,8 @@
     width: 98px;
     padding-left: 16px;
     margin-bottom: 18px;
-    }
+  }
 }
-
 
 /* The switch - the box around the slider */
 .switch {
@@ -305,7 +273,7 @@
 
 /* Hide default HTML checkbox */
 .switch input {
-  display:none;
+  display: none;
   margin: 0;
 }
 
@@ -320,14 +288,13 @@
   border-radius: 20px;
   border: 0.604701px solid var(--switcher-accent-day);
   background-color: var(--white-color);
-  -webkit-transition: .4s;
-  transition: .4s;
-  
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 16px;
   width: 16px;
   top: 50%;
@@ -335,8 +302,8 @@
   transform: translateY(-50%);
   border-radius: 50%;
   background-color: var(--switcher-accent-day);
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -351,7 +318,7 @@ input:checked + .slider {
 input:checked + .slider:before {
   top: 50%;
   right: 1px;
-  transform: translate(110%, -50%);
+  transform: translate(125%, -50%);
   background-color: var(--white-color);
 }
 
@@ -366,7 +333,6 @@ input:checked + .slider:before {
   top: 100%;
   right: 0px;
   transition: var(--animation-timing-function);
-  
 
   @media screen and (min-width: $tablet) {
     display: none;
@@ -403,17 +369,14 @@ body.no-scroll {
   &:focus,
   &:hover,
   &:active {
-      background: var(--accent-color);
-      
-    }
+    background: var(--accent-color);
+  }
 
-    &:focus svg,
-    &:hover svg,
-    &:active svg {
-     fill: var(--bg-color);
-     
-    } 
-
+  &:focus svg,
+  &:hover svg,
+  &:active svg {
+    fill: var(--bg-color);
+  }
 }
 
 .burger_menu-text {
@@ -425,10 +388,8 @@ body.no-scroll {
   &:focus,
   &:hover,
   &:active {
-      color: var(--bg-color);
-      
-    }
-
+    color: var(--bg-color);
+  }
 }
 
 .icon-cross {

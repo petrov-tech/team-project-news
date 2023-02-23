@@ -115,7 +115,7 @@ function markup(mass, data) {
             </svg>
           </div>             
         </button>
-        <ul class="list__card is-hidden">
+        <ul class="list__card ">
         ${loadCardsHtml(mass)}
         </ul>
     </li>

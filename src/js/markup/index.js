@@ -1,8 +1,8 @@
 
 import { generatePaginationButtons, newSearchToNextPage } from "../pagination/index"
-import { getPopularArticle } from "../api";
 import { getWeatherRefs } from "../weather";
 import { loadLockalStorage } from "../read_more";
+import { dataLockalStorage } from "../favorite_search";
   
 const news = document.getElementsByClassName("news")[0]
 const paginationDiv = document.getElementsByClassName("pagination-buttons")[0]
@@ -44,6 +44,8 @@ function searchCards(mass,page = 1) {
 
 
 function createCardtToNews(mass = allCardsOnPage, page = 1) { 
+    
+    
     addToMassCards(mass) 
     const startMass = orientationFromBody(page)    
      getMarkup(massPageCards, startMass)  
@@ -73,7 +75,8 @@ function addToMassCards(elem) {
 function loadCardsHtml(mass) {
     return "<ul class='list-news'>" + mass.map((elem) => {
         // пошук на фаворіт
-
+        
+        elem.toFavorite = LockalStorageFavorite(elem.idCards)
 
         return createCards(elem)
      }).join("") + "</ul>"
@@ -153,15 +156,17 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
         }
         else {
             // масив за пошуком категорією
-            titleFormt = title;            
-            imgUrl = multimedia[0].url;
+            
+            titleFormt = title;   
+            if (multimedia.length > 1) { imgUrl = multimedia[multimedia.length - 2].url; }
+            else {imgUrl = multimedia[0].url;}            
             dataFormt = created_date;
             urlFormt = url;
             sectionFormt = section;
             idCards = uri
         }
     }
-    else  {        
+    else if (media)  {        
 
         // масив за популярним
         titleFormt = title;        
@@ -186,10 +191,29 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
     const paragraf = getFormatParagraf(abstract)
 
     // тут якщо читали або фаворіт по ід провіряти
+    toFavorite = LockalStorageFavorite(idCards)
    toRead = LockalStorageRead(idCards)
-
+    
+    
   return  ({idCards,sectionFormt,titleFormt,paragraf,dataFormt,urlFormt,imgUrl,toRead ,toFavorite })
 }
+
+function LockalStorageFavorite(id) {
+     
+    let toggal = false
+    let dataMass = dataLockalStorage()  
+    
+    if (dataMass === undefined) dataMass = []; 
+    
+    dataMass.map(e => {   
+        
+        if (e.idCards === id) {toggal =  true;  } 
+    })
+    
+    return toggal
+         
+}
+
 
 function LockalStorageRead(id) {
     const dataObj = loadLockalStorage()
@@ -209,7 +233,10 @@ function LockalStorageRead(id) {
 
 function createCards({  urlFormt , sectionFormt,imgUrl,titleFormt,paragraf,dataFormt, idCards,toRead = false,toFavorite = false }) {
     if (toRead) {toRead = "cardsRead"} else toRead = ""
-    if (toFavorite) {toFavorite = "cardsFavorite"} else toFavorite = ""    
+    if (toFavorite) { toFavorite = "cardsFavorite" } else toFavorite = ""
+    const currentPage = location.pathname.match(/favorite.html/);
+    if (currentPage) { toFavorite = "cardsFavorite" }
+
     return `
     <li>
     <article class="item-news__article ${toRead}" data-id="${idCards} ">    
