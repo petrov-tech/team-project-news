@@ -1,100 +1,57 @@
 import { massPageCards } from '../markup/index';
 import { createCardsToHtml } from '../markup/index';
 
-
-// const containerCard = querySelector('.container-card');
-// const toFavouriteBtn = querySelector('.item-news__add-to-favorite');
-
-
 const data = [];
 loadLockalStorage();
 
+const container = document.querySelector('section');
+container.addEventListener('click', addToFavorite);
 
-// createCardsToHtml(data);
-
-
-
-    const container = document.querySelector('section');
-    container.addEventListener('click', addToFavorite);
-
-
-
-
-
-function addToFavorite(e) {
-    
+function addToFavorite(e) {    
     if (e.target.nodeName === 'BUTTON') {
-         let toggal = true     
-        
-        
-
-
+        let toggal = true;        
         const favoriteCard = e.target.dataset.id;
         
-        data.map((elem,i) => {
+        data.map((elem, i) => {
             if (elem.idCards === Number(favoriteCard)) {
-                e.target.classList.remove("cardsFavorite")
+                e.target.classList.remove("cardsFavorite");
                 data.splice(i, 1);
-                toggal = false
+                toggal = false;
                 localStorage.setItem('data', JSON.stringify(data));
                 const currentPage = location.pathname.match(/favorite.html/);
-                 if (currentPage) { e.target.parentNode.parentNode.parentNode.remove(); }
-                
+                if (currentPage) { e.target.parentNode.parentNode.parentNode.remove(); }
                 return
-            } 
-            
-        })
+            };
+        });
         if (toggal) {
         massPageCards.map(massPageCard => {
-                if (massPageCard.idCards === Number(favoriteCard)) {
-                    e.target.classList.add("cardsFavorite")
-                    data.push(massPageCard);
-                    return
-                }
-                localStorage.setItem('data', JSON.stringify(data));
-                });        
-        }}      
-    }
-    
-
-
-// container.addEventListener('click', removeFromFavorite);
-
-// function removeFromFavorite() {
-//   if (e.target.nodeName !== 'BUTTON') {
-//     return;
-//   }
-//   const curentBtn = e.target;
-//   curentBtn.classList.replace(
-//     '.item-news__add-to-favorite-btn-remove',
-//     '.item-news__add-to-favorite-btn'
-//   );
-
-//   const favoriteCard = e.target.dataset.id;
-//   data.map((est, i) => {
-//     console.log(est.idCards, Number(favoriteCard));
-//     if (est.idCards === Number(favoriteCard)) {
-//       data.splice(i, 1);
-//       return;
-//     }
-//   });
-// }
-
+            if (massPageCard.idCards === Number(favoriteCard)) {
+                e.target.classList.add("cardsFavorite");
+                data.push(massPageCard);
+                return
+            };
+            localStorage.setItem('data', JSON.stringify(data));
+            });        
+        };
+    };  
+};
+ 
 function loadLockalStorage() {   
-    const mass = dataLockalStorage()
-    if (mass) loadLockalToMass(mass)
-}
+    const mass = dataLockalStorage();
+    if (mass) loadLockalToMass(mass);
+};
+
 function dataLockalStorage() {
   if (JSON.parse(localStorage.getItem('data')) === null) {
     return;
     }    
-    return JSON.parse(localStorage.getItem('data'))    
-}
+    return JSON.parse(localStorage.getItem('data')); 
+};
+
 function loadLockalToMass(elem) {
     elem.map(e => {
-        data.push(e)
-    })
-}
-
+        data.push(e);
+    });
+};
 
 export {dataLockalStorage}
