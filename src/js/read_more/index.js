@@ -36,7 +36,7 @@ function removeFromRead(e) {
   const idCard = e.target.dataset.id;
   reading.map((est, i) => {
    // console.log(est.idCards, Number(idCard));
-    if (est.idCards === idCard) {
+    if (est.idCards == idCard) {
       reading.splice(i, 1);
       return;
     }
@@ -47,7 +47,7 @@ function removeFromRead(e) {
 }
 function massCards(e) {
   massPageCards.map(massPageCard => {
-    if (massPageCard.idCards === e) {
+    if (massPageCard.idCards == e) {
       reading.push(massPageCard);
     }
   });
@@ -102,7 +102,7 @@ function createCardsToRead() {
 
 
 function readButton(e){
-  if(e.target.nodeName === 'BUTTON'){    
+  if(e.target.classList.contains("data-list__btn")){    
     e.target.nextSibling.nextElementSibling.classList.toggle("is-hidden")
     e.target.classList.toggle("turn")
   }

@@ -58,7 +58,7 @@ async function getSearchArticle(value = lastSearch, page) {
   }
   // console.log(response.meta.hits);
   let { docs } = response;
-  console.log(docs);
+  
 
   return docs;
 }
@@ -75,7 +75,7 @@ async function getArticleByCategory(value) {
 
     let { results } = articles;
 
-    console.log(results);
+    
     return results;
   } catch (error) {
     console.log('error');
