@@ -7,7 +7,7 @@ if (!currentPage) {
   paginationDiv.addEventListener("click",nextPage)
 }
 
-let lastPages = 3
+let lastPages = 0
 let pageToBackend = 2
 
 function generatePaginationButtons(currentPage, totalPages) {
