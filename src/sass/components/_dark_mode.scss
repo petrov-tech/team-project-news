@@ -33,8 +33,11 @@ body {
     color: var(--bg-color);
 }
 
-.dark__theme .navigation__logo,
-.item-news__description {
+.dark__theme .navigation__logo {
+    color: var(--bg-color);
+}
+
+.dark__theme .item-news__description {
     color: var(--bg-color);
 }
 
@@ -79,6 +82,14 @@ body {
 .dark__theme .calendar_input {
     background-color: rgba(0, 0, 0, 0);
     border: 1px solid var(--bg-color);
+}
+
+.calendar__button-arrow {
+    fill: #A2A2A2;
+}
+
+.dark__theme .calendar__button-arrow{
+    fill: var(--bg-color);
 }
 
 .dark__theme h2 {
