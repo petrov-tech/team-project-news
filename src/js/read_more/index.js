@@ -22,6 +22,8 @@ if (!currentPage) {
 
 if (currentPage) {
   dataListCard = document.querySelector('.container__read');
+  dataListCard.addEventListener('click', readButton)
+
 }
 
 isStorageEmpty();
@@ -98,49 +100,26 @@ function createCardsToRead() {
 
 }
 
-const btn = document.querySelector('.container__read')
-btn.addEventListener('click', readButton)
 
 function readButton(e){
-  
-  if(e.target.parentNode.parentNode.nodeName === 'BUTTON'){
-console.dir(e.target.parentNode.parentNode.nodeName === 'BUTTON');
-    dataIcon.classList.add('turn')
-    listCard.classList.add('is-hidden')
-    listCard=[]
+  if(e.target.nodeName === 'BUTTON'){    
+    e.target.nextSibling.nextElementSibling.classList.toggle("is-hidden")
+    e.target.classList.toggle("turn")
   }
-
 }
-// function markup(mass, data) {
-//      return `<ul class="date-list">
-//      <button>
-//      <p class="date-list__data">${data}</p>
-//      <svg class="date-list__icon" aria-hidden="true" width="15" height="9" viewBox="0 0 32 32">
-//             <path d="M3.76 25.143l-3.76-3.479 16-14.806 16 14.806-3.76 3.479-12.24-11.302-12.24 11.302z"></path>
-//             </svg>
-//       </button>
-//       <ul class="list__card ">
-//         ${loadCardsHtml(mass)}
-//       </ul>
-//       </ul>
-// }
-// <div class="date-list-search "> </div>
-// 
-//<p class="date-list__data">${data}</p> 
+
 
 function markup(mass, data) {
   return `<ul class="date-list">
     <li class="date-list__data">
         <button class="data-list__btn">
-        <div>${data} 
-       
-        
+        <div class="date-list__data">${data}         
             <svg class="date-list__icon" aria-hidden="true" width="15" height="9" viewBox="0 0 32 32">
             <path d="M3.76 25.143l-3.76-3.479 16-14.806 16 14.806-3.76 3.479-12.24-11.302-12.24 11.302z"></path>
             </svg>
         </div>
         </button>
-        <ul class="list__card ">
+        <ul class="list__card">
         ${loadCardsHtml(mass)}
         </ul>
     </li>
