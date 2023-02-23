@@ -15,7 +15,7 @@ let massPageCards = []
 let currectPage = 2
 let lastCuttectPage = 0
 let searchBloom = false
-let localStorageRead = []
+
 
 window.addEventListener('resize', function () {
     const lastOriemtir = orientation
@@ -44,8 +44,8 @@ function searchCards(mass,page = 1) {
 
 
 function createCardtToNews(mass = allCardsOnPage, page = 1) { 
-    localStorageRead = dataLockalStorage() 
-    console.log(localStorageRead);
+    
+    
     addToMassCards(mass) 
     const startMass = orientationFromBody(page)    
      getMarkup(massPageCards, startMass)  
@@ -75,6 +75,7 @@ function addToMassCards(elem) {
 function loadCardsHtml(mass) {
     return "<ul class='list-news'>" + mass.map((elem) => {
         // пошук на фаворіт
+        
         elem.toFavorite = LockalStorageFavorite(elem.idCards)
 
         return createCards(elem)
@@ -155,15 +156,17 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
         }
         else {
             // масив за пошуком категорією
-            titleFormt = title;            
-            imgUrl = multimedia[0].url;
+            
+            titleFormt = title;   
+            if (multimedia.length > 1) { imgUrl = multimedia[multimedia.length - 2].url; }
+            else {imgUrl = multimedia[0].url;}            
             dataFormt = created_date;
             urlFormt = url;
             sectionFormt = section;
             idCards = uri
         }
     }
-    else  {        
+    else if (media)  {        
 
         // масив за популярним
         titleFormt = title;        
@@ -198,13 +201,13 @@ function transformToFormat({ abstract, headline, web_url, multimedia, pub_date, 
 function LockalStorageFavorite(id) {
      
     let toggal = false
-    let dataMass = localStorageRead  
-    console.log(dataMass);
+    let dataMass = dataLockalStorage()  
+    
     if (dataMass === undefined) dataMass = []; 
     
     dataMass.map(e => {   
         
-        if (e.idCards === id) {toggal =  true; console.log("sdw"); } 
+        if (e.idCards === id) {toggal =  true;  } 
     })
     
     return toggal
