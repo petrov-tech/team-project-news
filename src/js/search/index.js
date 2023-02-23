@@ -44,6 +44,8 @@ async function inSearchNews(e) {
     scrollToTop();
     newSearchToNextPage();
     refs.searchForm.reset();
+    refs.paginationCtr.classList.remove('is-hidden');
+    refs.errorCtr.classList.add('is-hidden');
   }
 }
 
