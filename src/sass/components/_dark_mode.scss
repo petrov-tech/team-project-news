@@ -63,6 +63,10 @@ body {
     fill: var(--bg-color);
 }
 
+.dark__theme .date-list__icon{
+    fill: var(--bg-color);
+}
+
 .sun {
     stroke: var(--switcher-accent-day);
 }
