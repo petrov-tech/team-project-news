@@ -31,7 +31,17 @@ body {
         padding-bottom: 150px;
     }
 }
-
+.favorite-section {
+    padding-top: 40px;
+    
+        @media screen and (min-width: $tablet) {
+            padding-top: 48px;
+        }
+    
+        @media screen and (min-width: $desktop) {
+            padding-top: 60px;
+        }
+}
 
 
 
